@@ -1,0 +1,30 @@
+
+> frontend@0.0.0 lint
+> oxlint
+
+src/App.tsx:26:16: warning eslint(no-unused-vars): Catch parameter 'err' is caught but never used. help: Consider handling this error.
+src/pages/BottleneckAnalysisPage.tsx:2:62: warning eslint(no-unused-vars): Identifier 'ArrowRight' is imported but never used. help: Consider removing this import.
+src/pages/BottleneckAnalysisPage.tsx:11:73: warning eslint(no-unused-vars): Parameter 'onNavigate' is declared but never used. Unused parameters should start with a '_'. help: Consider removing this parameter.
+src/pages/BottleneckAnalysisPage.tsx:15:10: warning eslint(no-unused-vars): Variable 'loading' is declared but never used. Unused variables should start with a '_'. help: Consider removing this declaration.
+src/pages/BottleneckAnalysisPage.tsx:48:9: warning eslint(no-unused-vars): Variable 'selectedRun' is declared but never used. Unused variables should start with a '_'. help: Consider removing this declaration.
+src/pages/BottleneckAnalysisPage.tsx:128:19: warning eslint(no-unused-vars): Variable 'isInfo' is declared but never used. Unused variables should start with a '_'. help: Consider removing this declaration.
+src/pages/BottleneckAnalysisPage.tsx:23:38: warning react-hooks(exhaustive-deps): React Hook useEffect has a missing dependency: 'selectedRunId' help: Either include it or remove the dependency array.
+src/pages/ExperimentComparisonPage.tsx:20:10: warning eslint(no-unused-vars): Variable 'baselineId' is declared but never used. Unused variables should start with a '_'. help: Consider removing this declaration.
+src/pages/ExperimentComparisonPage.tsx:22:10: warning eslint(no-unused-vars): Variable 'comparing' is declared but never used. Unused variables should start with a '_'. help: Consider removing this declaration.
+src/pages/ExperimentComparisonPage.tsx:33:11: warning react(immutability): Cannot access variable while it is being initialized help: `runComparison` is read while its declaration is still being initialized. Move the access after initialization. For a recursive callback, use a named function expression or restructure the callback so it does not capture itself during initialization
+src/pages/TransactionExplorerPage.tsx:5:3: warning eslint(no-unused-vars): Identifier 'Filter' is imported but never used. help: Consider removing this import.
+src/pages/TransactionExplorerPage.tsx:10:3: warning eslint(no-unused-vars): Identifier 'Clock' is imported but never used. help: Consider removing this import.
+src/pages/TransactionExplorerPage.tsx:27:20: warning eslint(no-unused-vars): Variable 'setPageSize' is declared but never used. Unused variables should start with a '_'. help: Consider removing this declaration.
+src/pages/TransactionExplorerPage.tsx:39:36: warning react-hooks(exhaustive-deps): React Hook useEffect has a missing dependency: 'selectedRunId' help: Either include it or remove the dependency array.
+src/pages/FxAnalyticsPage.tsx:2:46: warning eslint(no-unused-vars): Identifier 'CheckCircle2' is imported but never used. help: Consider removing this import.
+src/pages/FxAnalyticsPage.tsx:34:5: warning react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+src/pages/OverviewPage.tsx:7:3: warning eslint(no-unused-vars): Identifier 'CheckCircle2' is imported but never used. help: Consider removing this import.
+src/pages/OverviewPage.tsx:44:5: warning react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+src/pages/PerformanceAnalyticsPage.tsx:17:53: warning eslint(no-unused-vars): Identifier 'Download' is imported but never used. help: Consider removing this import.
+src/pages/RunLoadTestPage.tsx:7:3: warning eslint(no-unused-vars): Identifier 'Clock' is imported but never used. help: Consider removing this import.
+src/pages/RunLoadTestPage.tsx:8:3: warning eslint(no-unused-vars): Identifier 'Zap' is imported but never used. help: Consider removing this import.
+src/pages/RunLoadTestPage.tsx:9:3: warning eslint(no-unused-vars): Identifier 'Users' is imported but never used. help: Consider removing this import.
+src/pages/RunLoadTestPage.tsx:10:3: warning eslint(no-unused-vars): Identifier 'Shield' is imported but never used. help: Consider removing this import.
+src/pages/RunLoadTestPage.tsx:11:3: warning eslint(no-unused-vars): Identifier 'Bell' is imported but never used. help: Consider removing this import.
+
+EXIT_CODE=0

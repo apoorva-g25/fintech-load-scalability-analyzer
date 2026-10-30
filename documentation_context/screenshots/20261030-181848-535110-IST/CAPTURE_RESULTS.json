@@ -1,0 +1,489 @@
+{
+  "timestamp": "2026-10-30T12:49:10.330Z",
+  "timezone": "Asia/Kolkata",
+  "viewport": {
+    "width": 1600,
+    "height": 1000
+  },
+  "deviceScaleFactor": 1,
+  "fullPage": true,
+  "browser": "156.0.8078.4",
+  "frontend": "http://127.0.0.1:49181",
+  "backend": "http://127.0.0.1:49180",
+  "dataSource": "New isolated SQLite database; two bounded UI submissions; no historical data imported",
+  "effectiveConfig": {
+    "domestic_currency": "INR",
+    "supported_currencies": [
+      "INR",
+      "USD",
+      "EUR",
+      "GBP",
+      "SGD",
+      "AED",
+      "JPY"
+    ],
+    "default_fx_fee_pct": 1,
+    "fraud_amount_threshold": 250000,
+    "fraud_velocity_window_seconds": 60,
+    "fraud_velocity_max_txns": 5,
+    "fraud_probabilistic_rate": 0.015,
+    "default_concurrency": 50,
+    "default_workers": 4,
+    "base_payment_delay_ms": 5,
+    "base_fx_delay_ms": 8,
+    "base_fraud_delay_ms": 6,
+    "base_notification_delay_ms": 12
+  },
+  "rates": [
+    {
+      "is_active": true,
+      "source_currency": "USD",
+      "destination_currency": "INR",
+      "id": 1,
+      "rate": 83.25,
+      "updated_at": "2026-10-30T12:48:51.748277"
+    },
+    {
+      "is_active": true,
+      "source_currency": "EUR",
+      "destination_currency": "INR",
+      "id": 2,
+      "rate": 89.5,
+      "updated_at": "2026-10-30T12:48:51.748277"
+    },
+    {
+      "is_active": true,
+      "source_currency": "GBP",
+      "destination_currency": "INR",
+      "id": 3,
+      "rate": 105.1,
+      "updated_at": "2026-10-30T12:48:51.748277"
+    },
+    {
+      "is_active": true,
+      "source_currency": "SGD",
+      "destination_currency": "INR",
+      "id": 4,
+      "rate": 61.8,
+      "updated_at": "2026-10-30T12:48:51.748277"
+    },
+    {
+      "is_active": true,
+      "source_currency": "AED",
+      "destination_currency": "INR",
+      "id": 5,
+      "rate": 22.65,
+      "updated_at": "2026-10-30T12:48:51.748277"
+    },
+    {
+      "is_active": true,
+      "source_currency": "USD",
+      "destination_currency": "EUR",
+      "id": 6,
+      "rate": 0.93,
+      "updated_at": "2026-10-30T12:48:51.748277"
+    },
+    {
+      "is_active": true,
+      "source_currency": "GBP",
+      "destination_currency": "USD",
+      "id": 7,
+      "rate": 1.26,
+      "updated_at": "2026-10-30T12:48:51.748277"
+    }
+  ],
+  "entries": [
+    {
+      "filename": "00-overview-before-demo.png",
+      "page": "Overview before demonstrations",
+      "tab": "overview",
+      "url": "http://127.0.0.1:49181/",
+      "status": "CAPTURED",
+      "note": "Fresh isolated database; no experiments exist yet.",
+      "bytes": 127411,
+      "sha256": "314368296e62d882cf8b285871922712a7b7da755923ac7aca033bb004c010f9",
+      "width": 1600,
+      "height": 1000,
+      "capturedAt": "2026-10-30T12:48:56.365Z"
+    },
+    {
+      "filename": "01-overview-dashboard.png",
+      "page": "Overview after demonstrations",
+      "tab": "overview",
+      "url": "http://127.0.0.1:49181/",
+      "status": "CAPTURED",
+      "note": "2 genuine completed demonstration runs in isolated database.",
+      "bytes": 153948,
+      "sha256": "27b3533723d6517f10b921ba7adbd1ba00a1660724841e2bc9e8927c49db420e",
+      "width": 1600,
+      "height": 1000,
+      "capturedAt": "2026-10-30T12:49:00.053Z"
+    },
+    {
+      "filename": "02-run-load-test.png",
+      "page": "Configured 100-transaction demonstration form",
+      "tab": "load-test",
+      "url": "http://127.0.0.1:49181/",
+      "status": "CAPTURED",
+      "note": "Before execution; genuine UI form configured for 100 mixed transactions.",
+      "bytes": 125454,
+      "sha256": "4e0ab12564535f505c1633a747e7a29683075463fc0e00153f3170783f72dc65",
+      "width": 1600,
+      "height": 1117,
+      "capturedAt": "2026-10-30T12:48:57.013Z"
+    },
+    {
+      "filename": "03-load-test-results.png",
+      "page": "Completed concurrent demonstration",
+      "tab": "load-test",
+      "url": "http://127.0.0.1:49181/",
+      "status": "CAPTURED",
+      "note": "Actual concurrent run eb53910a-f4e1-4156-abb3-3fa220530516; COMPLETED, 100 processed and 100 stored. Not a scalability benchmark.",
+      "bytes": 143294,
+      "sha256": "f9ea3dbe8ee32e6b3eb5c902d0d53c6b744f49649e00d13a1c54c8eedf237b4b",
+      "width": 1600,
+      "height": 1117,
+      "capturedAt": "2026-10-30T12:48:59.635Z"
+    },
+    {
+      "filename": "03a-sequential-results.png",
+      "page": "Completed sequential demonstration",
+      "tab": "load-test",
+      "url": "http://127.0.0.1:49181/",
+      "status": "CAPTURED",
+      "note": "Actual sequential run 29bdba1f-42a0-4d76-a090-c59e6431e97d; COMPLETED, 100 processed and 100 stored. Not a scalability benchmark.",
+      "bytes": 140701,
+      "sha256": "e27108106f65c72a3ed4105ff1c2e35f59fbaee7642899125846ae71003fd867",
+      "width": 1600,
+      "height": 1117,
+      "capturedAt": "2026-10-30T12:48:58.467Z"
+    },
+    {
+      "filename": "04-performance-analytics.png",
+      "page": "Performance Analytics: aggregate",
+      "tab": "analytics",
+      "url": "http://127.0.0.1:49181/",
+      "status": "CAPTURED",
+      "note": "Two 100-transaction demonstrations only; not a workload-scaling curve.",
+      "bytes": 114684,
+      "sha256": "aa37000b8b01c484ce14820ff3b44fcc3db5994053ae4ae024fea6973792fa92",
+      "width": 1600,
+      "height": 1552,
+      "capturedAt": "2026-10-30T12:49:02.270Z"
+    },
+    {
+      "filename": "04a-performance-run-details.png",
+      "page": "Performance Analytics: concurrent run",
+      "tab": "analytics",
+      "url": "http://127.0.0.1:49181/",
+      "status": "CAPTURED",
+      "note": "Service timings and outcomes for run eb53910a-f4e1-4156-abb3-3fa220530516.",
+      "bytes": 88532,
+      "sha256": "9e28789a067565e08a2092d998713496e234c85c0cbcdf00b5abe566ea849fd8",
+      "width": 1600,
+      "height": 1000,
+      "capturedAt": "2026-10-30T12:49:03.333Z"
+    },
+    {
+      "filename": "05-bottleneck-analysis.png",
+      "page": "Bottleneck Analysis",
+      "tab": "bottlenecks",
+      "url": "http://127.0.0.1:49181/",
+      "status": "CAPTURED",
+      "note": "Actual heuristic findings for the small concurrent demonstration; not proof of production bottlenecks.",
+      "bytes": 89757,
+      "sha256": "be40cbbd4d1ce6e7e45451be9c82ae88b74256c7aa6b074f21ee5dec883f24e0",
+      "width": 1600,
+      "height": 1000,
+      "capturedAt": "2026-10-30T12:49:04.332Z"
+    },
+    {
+      "filename": "06-experiment-comparison.png",
+      "page": "Experiment Comparison",
+      "tab": "comparison",
+      "url": "http://127.0.0.1:49181/",
+      "status": "CAPTURED",
+      "note": "Unmodified application comparison; backend chooses baseline in DB result order. Single trials are not causal speedup evidence.",
+      "bytes": 91359,
+      "sha256": "4e097e17d8c8684bf559520342774e3c4e0f55d8de87d4fffaa7d505c1f054b2",
+      "width": 1600,
+      "height": 1102,
+      "capturedAt": "2026-10-30T12:49:05.550Z"
+    },
+    {
+      "filename": "07-fx-analytics.png",
+      "page": "FX Analytics",
+      "tab": "fx",
+      "url": "http://127.0.0.1:49181/",
+      "status": "CAPTURED",
+      "note": "Illustrative seeded FX rates and real aggregate demo outcomes; calculator not edited.",
+      "bytes": 118291,
+      "sha256": "f5e61f0a031d9c2334d51178ab33b5344c21ad3437d9f3bf84bd22cee7c8abd0",
+      "width": 1600,
+      "height": 1000,
+      "capturedAt": "2026-10-30T12:49:06.563Z"
+    },
+    {
+      "filename": "08-transaction-explorer.png",
+      "page": "Transaction Explorer",
+      "tab": "explorer",
+      "url": "http://127.0.0.1:49181/",
+      "status": "CAPTURED",
+      "note": "Only generated CUST_ IDs and synthetic transactions from run eb53910a-f4e1-4156-abb3-3fa220530516. The UI labels timings microseconds, but values are milliseconds.",
+      "bytes": 531513,
+      "sha256": "fb921fa2d8fa5076bd1f4188490835b8e5a8bdc8da2645f95b0090eaffe54943",
+      "width": 1600,
+      "height": 3679,
+      "capturedAt": "2026-10-30T12:49:07.470Z"
+    },
+    {
+      "filename": "09-system-configuration.png",
+      "page": "System Configuration (read only)",
+      "tab": "config",
+      "url": "http://127.0.0.1:49181/",
+      "status": "CAPTURED",
+      "note": "Read-only capture; no settings or rates were saved/modified. Fee config propagation remains a documented implementation limitation.",
+      "bytes": 73280,
+      "sha256": "1bfb4c44b50b25ded0ce51f7ad7ff22365fe83431f38435bdbfbf45abbe7c987",
+      "width": 1600,
+      "height": 1000,
+      "capturedAt": "2026-10-30T12:49:07.727Z"
+    },
+    {
+      "filename": "10-api-documentation.png",
+      "page": "Actual backend Swagger UI",
+      "tab": "backend /docs",
+      "url": "http://127.0.0.1:49180/docs",
+      "status": "CAPTURED",
+      "note": "Real backend /docs and /openapi.json; official Swagger JS/CSS served from isolated dev dependency to avoid CDN failures. No Try it out actions executed.",
+      "bytes": 112246,
+      "sha256": "d9bdc2effd4bba155b1cfd4f6e0ec32bdaf97dcc7152de54c9682ea9584c78d3",
+      "width": 1600,
+      "height": 1752,
+      "capturedAt": "2026-10-30T12:49:09.895Z"
+    }
+  ],
+  "runs": [
+    {
+      "request": {
+        "name": "Screenshot-Demo-100tx-sequential",
+        "transaction_count": 100,
+        "workload_type": "mixed",
+        "processing_mode": "sequential",
+        "concurrency_limit": 1,
+        "intl_percentage": 50,
+        "random_seed": 42,
+        "fx_config": {
+          "use_cache": true,
+          "base_latency_ms": 8
+        },
+        "notification_config": {
+          "num_workers": 4
+        }
+      },
+      "result": {
+        "id": "29bdba1f-42a0-4d76-a090-c59e6431e97d",
+        "name": "Screenshot-Demo-100tx-sequential",
+        "status": "COMPLETED",
+        "transaction_count": 100,
+        "workload_type": "mixed",
+        "processing_mode": "sequential",
+        "concurrency_limit": 1,
+        "intl_percentage": 50,
+        "random_seed": 42,
+        "created_at": "2026-10-30T12:48:57.091258",
+        "started_at": "2026-10-30T12:48:57.106716",
+        "completed_at": "2026-10-30T12:48:57.365868",
+        "progress": 100,
+        "processed_count": 100,
+        "metrics": {
+          "total_transactions": 100,
+          "total_payment_time_s": 0.205,
+          "full_pipeline_time_s": 0.2235,
+          "throughput_tps": 487.83,
+          "pipeline_throughput_tps": 447.51,
+          "avg_response_time_ms": 0.82,
+          "p50_response_time_ms": 0.26,
+          "p95_response_time_ms": 2.47,
+          "p99_response_time_ms": 3.77,
+          "success_count": 78,
+          "success_rate_pct": 78,
+          "fraud_flagged_count": 11,
+          "fraud_rate_pct": 11,
+          "failed_count": 11,
+          "failure_rate_pct": 11,
+          "domestic_count": 53,
+          "international_count": 47,
+          "fx_conversions": {
+            "total_intl": 47,
+            "success_count": 36,
+            "failure_count": 11,
+            "avg_fx_latency_ms": 0.73,
+            "p95_fx_latency_ms": 2.88
+          },
+          "service_latencies": {
+            "payment_avg_ms": 0.15,
+            "payment_p95_ms": 0.3,
+            "fraud_avg_ms": 0.09,
+            "fraud_p95_ms": 0.21,
+            "fx_avg_ms": 0.73,
+            "fx_p95_ms": 2.88,
+            "notification_avg_wait_ms": 1.2,
+            "notification_p95_wait_ms": 5.27,
+            "notification_avg_processing_ms": 1.75
+          },
+          "notification_metrics": {
+            "queued_count": 100,
+            "processed_count": 100,
+            "success_count": 100,
+            "failed_count": 0,
+            "max_queue_size": 1,
+            "current_queue_size": 0,
+            "avg_wait_time_ms": 1.2,
+            "p95_wait_time_ms": 5.27,
+            "avg_processing_time_ms": 1.75,
+            "drain_time_ms": 18.45,
+            "num_workers": 4
+          },
+          "resource_usage": {
+            "cpu_percent": 44.3,
+            "memory_mb": 93.93
+          }
+        },
+        "bottlenecks": [
+          {
+            "title": "Foreign Exchange Rate Lookup Latency Bottleneck",
+            "severity": "MEDIUM",
+            "supporting_measurements": {
+              "fx_avg_latency_ms": 0.73,
+              "fx_share_of_response_pct": 89,
+              "fx_p95_ms": 2.88
+            },
+            "explanation": "Foreign Exchange conversion accounts for 89.0% of total payment processing duration due to synchronous database/service rate resolution.",
+            "recommendation": "Enable in-memory LRU exchange-rate caching with periodic invalidation to bypass database lookup overhead."
+          },
+          {
+            "title": "Severe Tail Latency Divergence (P95/Average)",
+            "severity": "MEDIUM",
+            "supporting_measurements": {
+              "avg_response_ms": 0.82,
+              "p95_response_ms": 2.47,
+              "divergence_ratio": 3.01
+            },
+            "explanation": "The 95th percentile latency (2.47ms) is 3.01x higher than average (0.82ms), pointing to resource contention or thread starvation under load spikes.",
+            "recommendation": "Tune bounded concurrency pool limits and optimize database write batches."
+          }
+        ],
+        "error_details": null
+      },
+      "stored_transaction_count": 100
+    },
+    {
+      "request": {
+        "name": "Screenshot-Demo-100tx-concurrent",
+        "transaction_count": 100,
+        "workload_type": "mixed",
+        "processing_mode": "concurrent",
+        "concurrency_limit": 25,
+        "intl_percentage": 50,
+        "random_seed": 42,
+        "fx_config": {
+          "use_cache": true,
+          "base_latency_ms": 8
+        },
+        "notification_config": {
+          "num_workers": 4
+        }
+      },
+      "result": {
+        "id": "eb53910a-f4e1-4156-abb3-3fa220530516",
+        "name": "Screenshot-Demo-100tx-concurrent",
+        "status": "COMPLETED",
+        "transaction_count": 100,
+        "workload_type": "mixed",
+        "processing_mode": "concurrent",
+        "concurrency_limit": 25,
+        "intl_percentage": 50,
+        "random_seed": 42,
+        "created_at": "2026-10-30T12:48:58.722845",
+        "started_at": "2026-10-30T12:48:58.737082",
+        "completed_at": "2026-10-30T12:48:59.177968",
+        "progress": 100,
+        "processed_count": 100,
+        "metrics": {
+          "total_transactions": 100,
+          "total_payment_time_s": 0.1289,
+          "full_pipeline_time_s": 0.3991,
+          "throughput_tps": 775.55,
+          "pipeline_throughput_tps": 250.53,
+          "avg_response_time_ms": 22.48,
+          "p50_response_time_ms": 21.75,
+          "p95_response_time_ms": 32.2,
+          "p99_response_time_ms": 44.87,
+          "success_count": 78,
+          "success_rate_pct": 78,
+          "fraud_flagged_count": 11,
+          "fraud_rate_pct": 11,
+          "failed_count": 11,
+          "failure_rate_pct": 11,
+          "domestic_count": 53,
+          "international_count": 47,
+          "fx_conversions": {
+            "total_intl": 47,
+            "success_count": 36,
+            "failure_count": 11,
+            "avg_fx_latency_ms": 2.04,
+            "p95_fx_latency_ms": 20.22
+          },
+          "service_latencies": {
+            "payment_avg_ms": 10.51,
+            "payment_p95_ms": 17.48,
+            "fraud_avg_ms": 9.25,
+            "fraud_p95_ms": 21.25,
+            "fx_avg_ms": 2.04,
+            "fx_p95_ms": 20.22,
+            "notification_avg_wait_ms": 180.72,
+            "notification_p95_wait_ms": 271.49,
+            "notification_avg_processing_ms": 11.83
+          },
+          "notification_metrics": {
+            "queued_count": 100,
+            "processed_count": 100,
+            "success_count": 100,
+            "failed_count": 0,
+            "max_queue_size": 84,
+            "current_queue_size": 0,
+            "avg_wait_time_ms": 180.72,
+            "p95_wait_time_ms": 271.49,
+            "avg_processing_time_ms": 11.83,
+            "drain_time_ms": 270.19,
+            "num_workers": 4
+          },
+          "resource_usage": {
+            "cpu_percent": 41.9,
+            "memory_mb": 94.36
+          }
+        },
+        "bottlenecks": [
+          {
+            "title": "Asynchronous Notification Delivery Bottleneck",
+            "severity": "HIGH",
+            "supporting_measurements": {
+              "max_observed_queue_size": 84,
+              "avg_queue_wait_ms": 180.72,
+              "worker_count": 4
+            },
+            "explanation": "Notification queue experienced backlog accumulation (84 pending events) with an average wait time of 180.72ms. The 4 background workers cannot keep pace with the payment arrival rate.",
+            "recommendation": "Scale notification background workers from 4 to 8 or implement batched notification dispatching."
+          }
+        ],
+        "error_details": null
+      },
+      "stored_transaction_count": 100
+    }
+  ],
+  "issues": [],
+  "measurementWarnings": [
+    "sequential run 29bdba1f-42a0-4d76-a090-c59e6431e97d: reported payment mean 0.15 ms is below configured simulated payment delay 5 ms. Screenshot preserves the actual application result; do not use it as validated performance evidence without investigating timing on this environment."
+  ]
+}

@@ -1,0 +1,61 @@
+INFO:     Started server process [14180]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:49180 (Press CTRL+C to quit)
+INFO:     127.0.0.1:49187 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49197 - "GET /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49197 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49197 - "GET /api/fx/rates HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49197 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59369 - "GET /api/dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50676 - "GET /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63414 - "GET /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59695 - "GET /api/dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58867 - "GET /api/dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59472 - "GET /api/dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59472 - "POST /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49197 - "GET /api/test-runs/29bdba1f-42a0-4d76-a090-c59e6431e97d HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49197 - "GET /api/test-runs/29bdba1f-42a0-4d76-a090-c59e6431e97d HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49197 - "GET /api/test-runs/29bdba1f-42a0-4d76-a090-c59e6431e97d/transactions?page_size=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59472 - "GET /api/test-runs/29bdba1f-42a0-4d76-a090-c59e6431e97d HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59472 - "GET /api/dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59472 - "POST /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49197 - "GET /api/test-runs/eb53910a-f4e1-4156-abb3-3fa220530516 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49197 - "GET /api/test-runs/eb53910a-f4e1-4156-abb3-3fa220530516 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49197 - "GET /api/test-runs/eb53910a-f4e1-4156-abb3-3fa220530516 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59472 - "GET /api/test-runs/eb53910a-f4e1-4156-abb3-3fa220530516 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49197 - "GET /api/test-runs/eb53910a-f4e1-4156-abb3-3fa220530516/transactions?page_size=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58867 - "GET /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59695 - "GET /api/dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63414 - "GET /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59472 - "GET /api/dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59472 - "GET /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58867 - "GET /api/analytics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63414 - "GET /api/analytics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59695 - "GET /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59695 - "GET /api/dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63414 - "GET /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59695 - "GET /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59695 - "GET /api/bottlenecks/eb53910a-f4e1-4156-abb3-3fa220530516 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49197 - "GET /api/bottlenecks/eb53910a-f4e1-4156-abb3-3fa220530516 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59695 - "GET /api/dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59695 - "GET /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63414 - "GET /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63414 - "POST /api/comparisons HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63414 - "POST /api/comparisons HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59695 - "GET /api/fx/rates HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63521 - "GET /api/fx/rates HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63414 - "GET /api/fx/analytics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58368 - "GET /api/fx/analytics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58368 - "GET /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63414 - "GET /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63414 - "GET /api/test-runs/eb53910a-f4e1-4156-abb3-3fa220530516/transactions?page=1&page_size=50 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63414 - "GET /api/dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63414 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58368 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60308 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60308 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [14180]

@@ -1,0 +1,1385 @@
+{
+  "sha256": "5df59305335156195c92905bfd318e9bdd700c3fff9c06348b460fff54768cd2",
+  "tables": {
+    "test_runs": {
+      "sql": "CREATE TABLE test_runs (\n\tid VARCHAR(36) NOT NULL, \n\tname VARCHAR(100) NOT NULL, \n\tstatus VARCHAR(20), \n\ttransaction_count INTEGER NOT NULL, \n\tworkload_type VARCHAR(20), \n\tprocessing_mode VARCHAR(20), \n\tconcurrency_limit INTEGER, \n\tintl_percentage FLOAT, \n\trandom_seed INTEGER, \n\tconfig_snapshot JSON, \n\tcreated_at DATETIME, \n\tstarted_at DATETIME, \n\tcompleted_at DATETIME, \n\tprogress FLOAT, \n\tprocessed_count INTEGER, \n\tmetrics JSON, \n\tbottlenecks JSON, \n\terror_details TEXT, \n\tPRIMARY KEY (id)\n)",
+      "count": 13,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "ix_test_runs_id",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 1,
+          "name": "ix_test_runs_status",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 2,
+          "name": "sqlite_autoindex_test_runs_1",
+          "unique": 1,
+          "origin": "pk",
+          "partial": 0
+        }
+      ]
+    },
+    "exchange_rates": {
+      "sql": "CREATE TABLE exchange_rates (\n\tid INTEGER NOT NULL, \n\tsource_currency VARCHAR(3) NOT NULL, \n\tdestination_currency VARCHAR(3) NOT NULL, \n\trate FLOAT NOT NULL, \n\tis_active BOOLEAN, \n\tupdated_at DATETIME, \n\tPRIMARY KEY (id), \n\tCONSTRAINT uq_pair UNIQUE (source_currency, destination_currency)\n)",
+      "count": 7,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "sqlite_autoindex_exchange_rates_1",
+          "unique": 1,
+          "origin": "u",
+          "partial": 0
+        }
+      ]
+    },
+    "transactions": {
+      "sql": "CREATE TABLE transactions (\n\tid VARCHAR(36) NOT NULL, \n\ttest_run_id VARCHAR(36) NOT NULL, \n\tcustomer_id VARCHAR(36) NOT NULL, \n\ttransaction_type VARCHAR(20) NOT NULL, \n\tsource_currency VARCHAR(3) NOT NULL, \n\tdestination_currency VARCHAR(3) NOT NULL, \n\toriginal_amount VARCHAR(30) NOT NULL, \n\texchange_rate VARCHAR(30), \n\tconverted_amount VARCHAR(30), \n\tfx_fee VARCHAR(30), \n\tstatus VARCHAR(20), \n\tfraud_flagged BOOLEAN, \n\tfraud_reason VARCHAR(255), \n\tcreated_at DATETIME, \n\tstarted_at DATETIME, \n\tcompleted_at DATETIME, \n\ttotal_duration_ms FLOAT, \n\tpayment_duration_ms FLOAT, \n\tfraud_duration_ms FLOAT, \n\tfx_duration_ms FLOAT, \n\tnotification_duration_ms FLOAT, \n\terror_message VARCHAR(255), \n\tPRIMARY KEY (id), \n\tFOREIGN KEY(test_run_id) REFERENCES test_runs (id)\n)",
+      "count": 10360,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "ix_transactions_customer_id",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 1,
+          "name": "ix_transactions_transaction_type",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 2,
+          "name": "ix_transactions_destination_currency",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 3,
+          "name": "ix_transactions_id",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 4,
+          "name": "idx_tx_testrun_type",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 5,
+          "name": "idx_tx_testrun_status",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 6,
+          "name": "ix_transactions_fraud_flagged",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 7,
+          "name": "ix_transactions_test_run_id",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 8,
+          "name": "ix_transactions_source_currency",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 9,
+          "name": "ix_transactions_status",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 10,
+          "name": "sqlite_autoindex_transactions_1",
+          "unique": 1,
+          "origin": "pk",
+          "partial": 0
+        }
+      ]
+    },
+    "notification_events": {
+      "sql": "CREATE TABLE notification_events (\n\tid VARCHAR(36) NOT NULL, \n\ttest_run_id VARCHAR(36) NOT NULL, \n\ttransaction_id VARCHAR(36) NOT NULL, \n\tstatus VARCHAR(20), \n\tworker_id INTEGER, \n\tqueued_at DATETIME, \n\tprocessed_at DATETIME, \n\twait_time_ms FLOAT, \n\tprocessing_time_ms FLOAT, \n\terror_message VARCHAR(255), \n\tPRIMARY KEY (id), \n\tFOREIGN KEY(test_run_id) REFERENCES test_runs (id), \n\tFOREIGN KEY(transaction_id) REFERENCES transactions (id)\n)",
+      "count": 0,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "ix_notification_events_status",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 1,
+          "name": "ix_notification_events_test_run_id",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 2,
+          "name": "idx_notif_testrun_status",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 3,
+          "name": "ix_notification_events_transaction_id",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 4,
+          "name": "ix_notification_events_id",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 5,
+          "name": "sqlite_autoindex_notification_events_1",
+          "unique": 1,
+          "origin": "pk",
+          "partial": 0
+        }
+      ]
+    }
+  },
+  "runs": [
+    {
+      "id": "cfdb9438-85d0-4803-abef-a8b42f1790dc",
+      "name": "Integration-Test-20tx",
+      "status": "COMPLETED",
+      "transaction_count": 20,
+      "workload_type": "mixed",
+      "processing_mode": "concurrent",
+      "concurrency_limit": 10,
+      "intl_percentage": 50.0,
+      "random_seed": 77,
+      "config_snapshot": {
+        "fraud_config": {},
+        "fx_config": {},
+        "notification_config": {}
+      },
+      "created_at": "2026-10-28 13:25:02.384795",
+      "started_at": "2026-10-28 13:25:02.398664",
+      "completed_at": "2026-10-28 13:25:02.500150",
+      "progress": 100.0,
+      "processed_count": 20,
+      "metrics": {
+        "total_transactions": 20,
+        "total_payment_time_s": 0.0395,
+        "full_pipeline_time_s": 0.0849,
+        "throughput_tps": 506.77,
+        "pipeline_throughput_tps": 235.56,
+        "avg_response_time_ms": 15.84,
+        "p50_response_time_ms": 13.97,
+        "p95_response_time_ms": 25.49,
+        "p99_response_time_ms": 27.0,
+        "success_count": 15,
+        "success_rate_pct": 75.0,
+        "fraud_flagged_count": 5,
+        "fraud_rate_pct": 25.0,
+        "failed_count": 0,
+        "failure_rate_pct": 0.0,
+        "domestic_count": 12,
+        "international_count": 8,
+        "fx_conversions": {
+          "total_intl": 8,
+          "success_count": 8,
+          "failure_count": 0,
+          "avg_fx_latency_ms": 3.31,
+          "p95_fx_latency_ms": 17.21
+        },
+        "service_latencies": {
+          "payment_avg_ms": 0.72,
+          "payment_p95_ms": 0.94,
+          "fraud_avg_ms": 13.78,
+          "fraud_p95_ms": 24.76,
+          "fx_avg_ms": 3.31,
+          "fx_p95_ms": 17.21,
+          "notification_avg_wait_ms": 14.81,
+          "notification_p95_wait_ms": 34.64,
+          "notification_avg_processing_ms": 11.1
+        },
+        "notification_metrics": {
+          "queued_count": 20,
+          "processed_count": 20,
+          "success_count": 20,
+          "failed_count": 0,
+          "max_queue_size": 15,
+          "current_queue_size": 0,
+          "avg_wait_time_ms": 14.81,
+          "p95_wait_time_ms": 34.64,
+          "avg_processing_time_ms": 11.1,
+          "drain_time_ms": 45.43,
+          "num_workers": 4
+        },
+        "resource_usage": {
+          "cpu_percent": 0.0,
+          "memory_mb": 98.46
+        }
+      },
+      "bottlenecks": [
+        {
+          "title": "Insufficient Data for Statistical Bottleneck Analysis",
+          "severity": "INFO",
+          "supporting_measurements": {
+            "transaction_count": 20
+          },
+          "explanation": "Workloads smaller than 50 transactions do not exhibit steady-state queue or resource characteristics.",
+          "recommendation": "Execute a workload of at least 500 to 1,000 transactions for conclusive bottleneck detection."
+        }
+      ],
+      "error_details": null,
+      "stored_transaction_count": 20
+    },
+    {
+      "id": "cfef8fbc-85bc-4933-b283-ceff21e87831",
+      "name": "Integration-Test-20tx",
+      "status": "COMPLETED",
+      "transaction_count": 20,
+      "workload_type": "mixed",
+      "processing_mode": "concurrent",
+      "concurrency_limit": 10,
+      "intl_percentage": 50.0,
+      "random_seed": 77,
+      "config_snapshot": {
+        "fraud_config": {},
+        "fx_config": {},
+        "notification_config": {}
+      },
+      "created_at": "2026-10-28 13:37:12.904281",
+      "started_at": "2026-10-28 13:37:12.921047",
+      "completed_at": "2026-10-28 13:37:13.016698",
+      "progress": 100.0,
+      "processed_count": 20,
+      "metrics": {
+        "total_transactions": 20,
+        "total_payment_time_s": 0.0303,
+        "full_pipeline_time_s": 0.0776,
+        "throughput_tps": 659.14,
+        "pipeline_throughput_tps": 257.57,
+        "avg_response_time_ms": 11.04,
+        "p50_response_time_ms": 10.26,
+        "p95_response_time_ms": 16.0,
+        "p99_response_time_ms": 17.3,
+        "success_count": 15,
+        "success_rate_pct": 75.0,
+        "fraud_flagged_count": 5,
+        "fraud_rate_pct": 25.0,
+        "failed_count": 0,
+        "failure_rate_pct": 0.0,
+        "domestic_count": 12,
+        "international_count": 8,
+        "fx_conversions": {
+          "total_intl": 8,
+          "success_count": 8,
+          "failure_count": 0,
+          "avg_fx_latency_ms": 2.12,
+          "p95_fx_latency_ms": 10.98
+        },
+        "service_latencies": {
+          "payment_avg_ms": 0.62,
+          "payment_p95_ms": 0.75,
+          "fraud_avg_ms": 9.55,
+          "fraud_p95_ms": 15.43,
+          "fx_avg_ms": 2.12,
+          "fx_p95_ms": 10.98,
+          "notification_avg_wait_ms": 15.56,
+          "notification_p95_wait_ms": 36.72,
+          "notification_avg_processing_ms": 11.53
+        },
+        "notification_metrics": {
+          "queued_count": 20,
+          "processed_count": 20,
+          "success_count": 20,
+          "failed_count": 0,
+          "max_queue_size": 15,
+          "current_queue_size": 0,
+          "avg_wait_time_ms": 15.56,
+          "p95_wait_time_ms": 36.72,
+          "avg_processing_time_ms": 11.53,
+          "drain_time_ms": 47.3,
+          "num_workers": 4
+        },
+        "resource_usage": {
+          "cpu_percent": 0.0,
+          "memory_mb": 97.79
+        }
+      },
+      "bottlenecks": [
+        {
+          "title": "Insufficient Data for Statistical Bottleneck Analysis",
+          "severity": "INFO",
+          "supporting_measurements": {
+            "transaction_count": 20
+          },
+          "explanation": "Workloads smaller than 50 transactions do not exhibit steady-state queue or resource characteristics.",
+          "recommendation": "Execute a workload of at least 500 to 1,000 transactions for conclusive bottleneck detection."
+        }
+      ],
+      "error_details": null,
+      "stored_transaction_count": 20
+    },
+    {
+      "id": "6e5a657e-2512-464d-8d11-69ab43a410be",
+      "name": "Benchmark-100tx-Concurrent",
+      "status": "COMPLETED",
+      "transaction_count": 100,
+      "workload_type": "mixed",
+      "processing_mode": "concurrent",
+      "concurrency_limit": 25,
+      "intl_percentage": 50.0,
+      "random_seed": 101,
+      "config_snapshot": {
+        "fraud_config": {},
+        "fx_config": {},
+        "notification_config": {
+          "num_workers": 4
+        }
+      },
+      "created_at": "2026-10-28 14:08:23.121238",
+      "started_at": "2026-10-28 14:08:23.142232",
+      "completed_at": "2026-10-28 14:08:23.597260",
+      "progress": 100.0,
+      "processed_count": 100,
+      "metrics": {
+        "total_transactions": 100,
+        "total_payment_time_s": 0.0909,
+        "full_pipeline_time_s": 0.4195,
+        "throughput_tps": 1100.2,
+        "pipeline_throughput_tps": 238.36,
+        "avg_response_time_ms": 15.44,
+        "p50_response_time_ms": 14.07,
+        "p95_response_time_ms": 24.49,
+        "p99_response_time_ms": 37.21,
+        "success_count": 76,
+        "success_rate_pct": 76.0,
+        "fraud_flagged_count": 14,
+        "fraud_rate_pct": 14.0,
+        "failed_count": 10,
+        "failure_rate_pct": 10.0,
+        "domestic_count": 48,
+        "international_count": 52,
+        "fx_conversions": {
+          "total_intl": 52,
+          "success_count": 42,
+          "failure_count": 10,
+          "avg_fx_latency_ms": 1.32,
+          "p95_fx_latency_ms": 11.47
+        },
+        "service_latencies": {
+          "payment_avg_ms": 7.98,
+          "payment_p95_ms": 13.32,
+          "fraud_avg_ms": 5.68,
+          "fraud_p95_ms": 13.91,
+          "fx_avg_ms": 1.32,
+          "fx_p95_ms": 11.47,
+          "notification_avg_wait_ms": 168.12,
+          "notification_p95_wait_ms": 313.09,
+          "notification_avg_processing_ms": 13.73
+        },
+        "notification_metrics": {
+          "queued_count": 100,
+          "processed_count": 100,
+          "success_count": 100,
+          "failed_count": 0,
+          "max_queue_size": 84,
+          "current_queue_size": 0,
+          "avg_wait_time_ms": 168.12,
+          "p95_wait_time_ms": 313.09,
+          "avg_processing_time_ms": 13.73,
+          "drain_time_ms": 328.63,
+          "num_workers": 4
+        },
+        "resource_usage": {
+          "cpu_percent": 13.7,
+          "memory_mb": 89.18
+        }
+      },
+      "bottlenecks": [
+        {
+          "title": "Asynchronous Notification Delivery Bottleneck",
+          "severity": "HIGH",
+          "supporting_measurements": {
+            "max_observed_queue_size": 84,
+            "avg_queue_wait_ms": 168.12,
+            "worker_count": 4
+          },
+          "explanation": "Notification queue experienced backlog accumulation (84 pending events) with an average wait time of 168.12ms. The 4 background workers cannot keep pace with the payment arrival rate.",
+          "recommendation": "Scale notification background workers from 4 to 8 or implement batched notification dispatching."
+        }
+      ],
+      "error_details": null,
+      "stored_transaction_count": 100
+    },
+    {
+      "id": "0642ae4f-b4d9-4a71-8424-88880b6b63b9",
+      "name": "Benchmark-500tx-Concurrent",
+      "status": "COMPLETED",
+      "transaction_count": 500,
+      "workload_type": "mixed",
+      "processing_mode": "concurrent",
+      "concurrency_limit": 50,
+      "intl_percentage": 50.0,
+      "random_seed": 102,
+      "config_snapshot": {
+        "fraud_config": {},
+        "fx_config": {},
+        "notification_config": {
+          "num_workers": 4
+        }
+      },
+      "created_at": "2026-10-28 14:08:24.085208",
+      "started_at": "2026-10-28 14:08:24.108740",
+      "completed_at": "2026-10-28 14:08:26.256957",
+      "progress": 100.0,
+      "processed_count": 500,
+      "metrics": {
+        "total_transactions": 500,
+        "total_payment_time_s": 0.3696,
+        "full_pipeline_time_s": 2.074,
+        "throughput_tps": 1352.88,
+        "pipeline_throughput_tps": 241.08,
+        "avg_response_time_ms": 28.56,
+        "p50_response_time_ms": 27.19,
+        "p95_response_time_ms": 35.26,
+        "p99_response_time_ms": 61.1,
+        "success_count": 378,
+        "success_rate_pct": 75.6,
+        "fraud_flagged_count": 76,
+        "fraud_rate_pct": 15.2,
+        "failed_count": 46,
+        "failure_rate_pct": 9.2,
+        "domestic_count": 265,
+        "international_count": 235,
+        "fx_conversions": {
+          "total_intl": 235,
+          "success_count": 189,
+          "failure_count": 46,
+          "avg_fx_latency_ms": 0.8,
+          "p95_fx_latency_ms": 0.02
+        },
+        "service_latencies": {
+          "payment_avg_ms": 17.71,
+          "payment_p95_ms": 25.68,
+          "fraud_avg_ms": 8.88,
+          "fraud_p95_ms": 25.62,
+          "fx_avg_ms": 0.8,
+          "fx_p95_ms": 0.02,
+          "notification_avg_wait_ms": 920.03,
+          "notification_p95_wait_ms": 1621.16,
+          "notification_avg_processing_ms": 14.31
+        },
+        "notification_metrics": {
+          "queued_count": 500,
+          "processed_count": 500,
+          "success_count": 500,
+          "failed_count": 0,
+          "max_queue_size": 460,
+          "current_queue_size": 0,
+          "avg_wait_time_ms": 920.03,
+          "p95_wait_time_ms": 1621.16,
+          "avg_processing_time_ms": 14.31,
+          "drain_time_ms": 1704.37,
+          "num_workers": 4
+        },
+        "resource_usage": {
+          "cpu_percent": 28.3,
+          "memory_mb": 91.8
+        }
+      },
+      "bottlenecks": [
+        {
+          "title": "Asynchronous Notification Delivery Bottleneck",
+          "severity": "HIGH",
+          "supporting_measurements": {
+            "max_observed_queue_size": 460,
+            "avg_queue_wait_ms": 920.03,
+            "worker_count": 4
+          },
+          "explanation": "Notification queue experienced backlog accumulation (460 pending events) with an average wait time of 920.03ms. The 4 background workers cannot keep pace with the payment arrival rate.",
+          "recommendation": "Scale notification background workers from 4 to 8 or implement batched notification dispatching."
+        }
+      ],
+      "error_details": null,
+      "stored_transaction_count": 500
+    },
+    {
+      "id": "9650d8f8-88e9-448b-bb70-2263774fe1cf",
+      "name": "Benchmark-500tx-Sequential",
+      "status": "COMPLETED",
+      "transaction_count": 500,
+      "workload_type": "mixed",
+      "processing_mode": "sequential",
+      "concurrency_limit": 1,
+      "intl_percentage": 50.0,
+      "random_seed": 102,
+      "config_snapshot": {
+        "fraud_config": {},
+        "fx_config": {},
+        "notification_config": {
+          "num_workers": 2
+        }
+      },
+      "created_at": "2026-10-28 14:08:26.747067",
+      "started_at": "2026-10-28 14:08:26.769765",
+      "completed_at": "2026-10-28 14:08:27.128473",
+      "progress": 100.0,
+      "processed_count": 500,
+      "metrics": {
+        "total_transactions": 500,
+        "total_payment_time_s": 0.2513,
+        "full_pipeline_time_s": 0.2719,
+        "throughput_tps": 1989.64,
+        "pipeline_throughput_tps": 1838.67,
+        "avg_response_time_ms": 0.28,
+        "p50_response_time_ms": 0.15,
+        "p95_response_time_ms": 1.39,
+        "p99_response_time_ms": 1.88,
+        "success_count": 378,
+        "success_rate_pct": 75.6,
+        "fraud_flagged_count": 76,
+        "fraud_rate_pct": 15.2,
+        "failed_count": 46,
+        "failure_rate_pct": 9.2,
+        "domestic_count": 265,
+        "international_count": 235,
+        "fx_conversions": {
+          "total_intl": 235,
+          "success_count": 189,
+          "failure_count": 46,
+          "avg_fx_latency_ms": 0.04,
+          "p95_fx_latency_ms": 0.02
+        },
+        "service_latencies": {
+          "payment_avg_ms": 0.08,
+          "payment_p95_ms": 0.15,
+          "fraud_avg_ms": 0.05,
+          "fraud_p95_ms": 0.09,
+          "fx_avg_ms": 0.04,
+          "fx_p95_ms": 0.02,
+          "notification_avg_wait_ms": 0.31,
+          "notification_p95_wait_ms": 0.42,
+          "notification_avg_processing_ms": 0.46
+        },
+        "notification_metrics": {
+          "queued_count": 500,
+          "processed_count": 500,
+          "success_count": 500,
+          "failed_count": 0,
+          "max_queue_size": 1,
+          "current_queue_size": 0,
+          "avg_wait_time_ms": 0.31,
+          "p95_wait_time_ms": 0.42,
+          "avg_processing_time_ms": 0.46,
+          "drain_time_ms": 20.63,
+          "num_workers": 2
+        },
+        "resource_usage": {
+          "cpu_percent": 25.2,
+          "memory_mb": 91.95
+        }
+      },
+      "bottlenecks": [
+        {
+          "title": "Severe Tail Latency Divergence (P95/Average)",
+          "severity": "MEDIUM",
+          "supporting_measurements": {
+            "avg_response_ms": 0.28,
+            "p95_response_ms": 1.39,
+            "divergence_ratio": 4.96
+          },
+          "explanation": "The 95th percentile latency (1.39ms) is 4.96x higher than average (0.28ms), pointing to resource contention or thread starvation under load spikes.",
+          "recommendation": "Tune bounded concurrency pool limits and optimize database write batches."
+        }
+      ],
+      "error_details": null,
+      "stored_transaction_count": 500
+    },
+    {
+      "id": "8756f516-8f5c-43f2-b03c-4da5ff763cf9",
+      "name": "Benchmark-1000tx-Concurrent",
+      "status": "COMPLETED",
+      "transaction_count": 1000,
+      "workload_type": "mixed",
+      "processing_mode": "concurrent",
+      "concurrency_limit": 50,
+      "intl_percentage": 50.0,
+      "random_seed": 103,
+      "config_snapshot": {
+        "fraud_config": {},
+        "fx_config": {},
+        "notification_config": {
+          "num_workers": 4
+        }
+      },
+      "created_at": "2026-10-28 14:08:27.687951",
+      "started_at": "2026-10-28 14:08:27.712368",
+      "completed_at": "2026-10-28 14:08:31.767566",
+      "progress": 100.0,
+      "processed_count": 1000,
+      "metrics": {
+        "total_transactions": 1000,
+        "total_payment_time_s": 0.4909,
+        "full_pipeline_time_s": 3.8738,
+        "throughput_tps": 2036.95,
+        "pipeline_throughput_tps": 258.15,
+        "avg_response_time_ms": 16.77,
+        "p50_response_time_ms": 15.5,
+        "p95_response_time_ms": 24.87,
+        "p99_response_time_ms": 31.45,
+        "success_count": 688,
+        "success_rate_pct": 68.8,
+        "fraud_flagged_count": 223,
+        "fraud_rate_pct": 22.3,
+        "failed_count": 89,
+        "failure_rate_pct": 8.9,
+        "domestic_count": 490,
+        "international_count": 510,
+        "fx_conversions": {
+          "total_intl": 510,
+          "success_count": 421,
+          "failure_count": 89,
+          "avg_fx_latency_ms": 0.42,
+          "p95_fx_latency_ms": 0.02
+        },
+        "service_latencies": {
+          "payment_avg_ms": 10.75,
+          "payment_p95_ms": 15.77,
+          "fraud_avg_ms": 4.89,
+          "fraud_p95_ms": 21.55,
+          "fx_avg_ms": 0.42,
+          "fx_p95_ms": 0.02,
+          "notification_avg_wait_ms": 1759.5,
+          "notification_p95_wait_ms": 3198.82,
+          "notification_avg_processing_ms": 13.92
+        },
+        "notification_metrics": {
+          "queued_count": 1000,
+          "processed_count": 1000,
+          "success_count": 1000,
+          "failed_count": 0,
+          "max_queue_size": 920,
+          "current_queue_size": 0,
+          "avg_wait_time_ms": 1759.5,
+          "p95_wait_time_ms": 3198.82,
+          "avg_processing_time_ms": 13.92,
+          "drain_time_ms": 3382.85,
+          "num_workers": 4
+        },
+        "resource_usage": {
+          "cpu_percent": 21.9,
+          "memory_mb": 95.04
+        }
+      },
+      "bottlenecks": [
+        {
+          "title": "Asynchronous Notification Delivery Bottleneck",
+          "severity": "HIGH",
+          "supporting_measurements": {
+            "max_observed_queue_size": 920,
+            "avg_queue_wait_ms": 1759.5,
+            "worker_count": 4
+          },
+          "explanation": "Notification queue experienced backlog accumulation (920 pending events) with an average wait time of 1759.5ms. The 4 background workers cannot keep pace with the payment arrival rate.",
+          "recommendation": "Scale notification background workers from 4 to 8 or implement batched notification dispatching."
+        }
+      ],
+      "error_details": null,
+      "stored_transaction_count": 1000
+    },
+    {
+      "id": "6dbd32c8-da0c-4dbe-8816-dfd71561d258",
+      "name": "WorkerScaling-1000tx-1Worker",
+      "status": "COMPLETED",
+      "transaction_count": 1000,
+      "workload_type": "mixed",
+      "processing_mode": "concurrent",
+      "concurrency_limit": 50,
+      "intl_percentage": 50.0,
+      "random_seed": 104,
+      "config_snapshot": {
+        "fraud_config": {},
+        "fx_config": {},
+        "notification_config": {
+          "num_workers": 1
+        }
+      },
+      "created_at": "2026-10-28 14:08:32.428273",
+      "started_at": "2026-10-28 14:08:32.443997",
+      "completed_at": "2026-10-28 14:08:47.541594",
+      "progress": 100.0,
+      "processed_count": 1000,
+      "metrics": {
+        "total_transactions": 1000,
+        "total_payment_time_s": 0.4703,
+        "full_pipeline_time_s": 14.901,
+        "throughput_tps": 2126.18,
+        "pipeline_throughput_tps": 67.11,
+        "avg_response_time_ms": 15.75,
+        "p50_response_time_ms": 14.47,
+        "p95_response_time_ms": 24.16,
+        "p99_response_time_ms": 29.54,
+        "success_count": 698,
+        "success_rate_pct": 69.8,
+        "fraud_flagged_count": 222,
+        "fraud_rate_pct": 22.2,
+        "failed_count": 80,
+        "failure_rate_pct": 8.0,
+        "domestic_count": 523,
+        "international_count": 477,
+        "fx_conversions": {
+          "total_intl": 477,
+          "success_count": 397,
+          "failure_count": 80,
+          "avg_fx_latency_ms": 0.31,
+          "p95_fx_latency_ms": 0.02
+        },
+        "service_latencies": {
+          "payment_avg_ms": 10.73,
+          "payment_p95_ms": 15.21,
+          "fraud_avg_ms": 4.17,
+          "fraud_p95_ms": 19.61,
+          "fx_avg_ms": 0.31,
+          "fx_p95_ms": 0.02,
+          "notification_avg_wait_ms": 7263.65,
+          "notification_p95_wait_ms": 13726.54,
+          "notification_avg_processing_ms": 14.42
+        },
+        "notification_metrics": {
+          "queued_count": 1000,
+          "processed_count": 1000,
+          "success_count": 1000,
+          "failed_count": 0,
+          "max_queue_size": 980,
+          "current_queue_size": 0,
+          "avg_wait_time_ms": 7263.65,
+          "p95_wait_time_ms": 13726.54,
+          "avg_processing_time_ms": 14.42,
+          "drain_time_ms": 14430.67,
+          "num_workers": 1
+        },
+        "resource_usage": {
+          "cpu_percent": 18.5,
+          "memory_mb": 95.46
+        }
+      },
+      "bottlenecks": [
+        {
+          "title": "Asynchronous Notification Delivery Bottleneck",
+          "severity": "HIGH",
+          "supporting_measurements": {
+            "max_observed_queue_size": 980,
+            "avg_queue_wait_ms": 7263.65,
+            "worker_count": 1
+          },
+          "explanation": "Notification queue experienced backlog accumulation (980 pending events) with an average wait time of 7263.65ms. The 1 background workers cannot keep pace with the payment arrival rate.",
+          "recommendation": "Scale notification background workers from 1 to 2 or implement batched notification dispatching."
+        }
+      ],
+      "error_details": null,
+      "stored_transaction_count": 1000
+    },
+    {
+      "id": "bb5a7bf4-0f4d-437c-b34f-a8d42d911a8f",
+      "name": "FX-1000tx-Uncached",
+      "status": "COMPLETED",
+      "transaction_count": 1000,
+      "workload_type": "international",
+      "processing_mode": "concurrent",
+      "concurrency_limit": 50,
+      "intl_percentage": 100.0,
+      "random_seed": 105,
+      "config_snapshot": {
+        "fraud_config": {},
+        "fx_config": {
+          "use_cache": false,
+          "base_latency_ms": 15.0
+        },
+        "notification_config": {
+          "num_workers": 4
+        }
+      },
+      "created_at": "2026-10-28 14:08:47.996285",
+      "started_at": "2026-10-28 14:08:48.016462",
+      "completed_at": "2026-10-28 14:08:52.752724",
+      "progress": 100.0,
+      "processed_count": 1000,
+      "metrics": {
+        "total_transactions": 1000,
+        "total_payment_time_s": 1.3271,
+        "full_pipeline_time_s": 4.5636,
+        "throughput_tps": 753.5,
+        "pipeline_throughput_tps": 219.12,
+        "avg_response_time_ms": 58.84,
+        "p50_response_time_ms": 57.48,
+        "p95_response_time_ms": 74.41,
+        "p99_response_time_ms": 136.76,
+        "success_count": 555,
+        "success_rate_pct": 55.5,
+        "fraud_flagged_count": 284,
+        "fraud_rate_pct": 28.4,
+        "failed_count": 161,
+        "failure_rate_pct": 16.1,
+        "domestic_count": 0,
+        "international_count": 1000,
+        "fx_conversions": {
+          "total_intl": 1000,
+          "success_count": 839,
+          "failure_count": 161,
+          "avg_fx_latency_ms": 21.99,
+          "p95_fx_latency_ms": 43.11
+        },
+        "service_latencies": {
+          "payment_avg_ms": 17.36,
+          "payment_p95_ms": 37.99,
+          "fraud_avg_ms": 15.45,
+          "fraud_p95_ms": 33.21,
+          "fx_avg_ms": 21.99,
+          "fx_p95_ms": 43.11,
+          "notification_avg_wait_ms": 1977.72,
+          "notification_p95_wait_ms": 3103.63,
+          "notification_avg_processing_ms": 14.96
+        },
+        "notification_metrics": {
+          "queued_count": 1000,
+          "processed_count": 1000,
+          "success_count": 1000,
+          "failed_count": 0,
+          "max_queue_size": 892,
+          "current_queue_size": 0,
+          "avg_wait_time_ms": 1977.72,
+          "p95_wait_time_ms": 3103.63,
+          "avg_processing_time_ms": 14.96,
+          "drain_time_ms": 3236.5,
+          "num_workers": 4
+        },
+        "resource_usage": {
+          "cpu_percent": 26.3,
+          "memory_mb": 96.13
+        }
+      },
+      "bottlenecks": [
+        {
+          "title": "Asynchronous Notification Delivery Bottleneck",
+          "severity": "HIGH",
+          "supporting_measurements": {
+            "max_observed_queue_size": 892,
+            "avg_queue_wait_ms": 1977.72,
+            "worker_count": 4
+          },
+          "explanation": "Notification queue experienced backlog accumulation (892 pending events) with an average wait time of 1977.72ms. The 4 background workers cannot keep pace with the payment arrival rate.",
+          "recommendation": "Scale notification background workers from 4 to 8 or implement batched notification dispatching."
+        },
+        {
+          "title": "Foreign Exchange Rate Lookup Latency Bottleneck",
+          "severity": "MEDIUM",
+          "supporting_measurements": {
+            "fx_avg_latency_ms": 21.99,
+            "fx_share_of_response_pct": 37.4,
+            "fx_p95_ms": 43.11
+          },
+          "explanation": "Foreign Exchange conversion accounts for 37.4% of total payment processing duration due to synchronous database/service rate resolution.",
+          "recommendation": "Enable in-memory LRU exchange-rate caching with periodic invalidation to bypass database lookup overhead."
+        }
+      ],
+      "error_details": null,
+      "stored_transaction_count": 1000
+    },
+    {
+      "id": "2264031f-7408-4103-93b1-09949fc17a0e",
+      "name": "Benchmark-5000tx-HeavyScale",
+      "status": "COMPLETED",
+      "transaction_count": 5000,
+      "workload_type": "mixed",
+      "processing_mode": "concurrent",
+      "concurrency_limit": 100,
+      "intl_percentage": 50.0,
+      "random_seed": 106,
+      "config_snapshot": {
+        "fraud_config": {},
+        "fx_config": {},
+        "notification_config": {
+          "num_workers": 8
+        }
+      },
+      "created_at": "2026-10-28 14:08:53.732244",
+      "started_at": "2026-10-28 14:08:53.817958",
+      "completed_at": "2026-10-28 14:09:04.146179",
+      "progress": 100.0,
+      "processed_count": 5000,
+      "metrics": {
+        "total_transactions": 5000,
+        "total_payment_time_s": 1.0921,
+        "full_pipeline_time_s": 9.3858,
+        "throughput_tps": 4578.13,
+        "pipeline_throughput_tps": 532.72,
+        "avg_response_time_ms": 9.96,
+        "p50_response_time_ms": 7.68,
+        "p95_response_time_ms": 21.12,
+        "p99_response_time_ms": 30.38,
+        "success_count": 986,
+        "success_rate_pct": 19.72,
+        "fraud_flagged_count": 3610,
+        "fraud_rate_pct": 72.2,
+        "failed_count": 404,
+        "failure_rate_pct": 8.08,
+        "domestic_count": 2528,
+        "international_count": 2472,
+        "fx_conversions": {
+          "total_intl": 2472,
+          "success_count": 2068,
+          "failure_count": 404,
+          "avg_fx_latency_ms": 0.22,
+          "p95_fx_latency_ms": 0.01
+        },
+        "service_latencies": {
+          "payment_avg_ms": 4.6,
+          "payment_p95_ms": 8.95,
+          "fraud_avg_ms": 4.46,
+          "fraud_p95_ms": 16.2,
+          "fx_avg_ms": 0.22,
+          "fx_p95_ms": 0.01,
+          "notification_avg_wait_ms": 4264.51,
+          "notification_p95_wait_ms": 7873.06,
+          "notification_avg_processing_ms": 13.88
+        },
+        "notification_metrics": {
+          "queued_count": 5000,
+          "processed_count": 5000,
+          "success_count": 5000,
+          "failed_count": 0,
+          "max_queue_size": 4600,
+          "current_queue_size": 0,
+          "avg_wait_time_ms": 4264.51,
+          "p95_wait_time_ms": 7873.06,
+          "avg_processing_time_ms": 13.88,
+          "drain_time_ms": 8293.64,
+          "num_workers": 8
+        },
+        "resource_usage": {
+          "cpu_percent": 25.9,
+          "memory_mb": 116.24
+        }
+      },
+      "bottlenecks": [
+        {
+          "title": "Asynchronous Notification Delivery Bottleneck",
+          "severity": "HIGH",
+          "supporting_measurements": {
+            "max_observed_queue_size": 4600,
+            "avg_queue_wait_ms": 4264.51,
+            "worker_count": 8
+          },
+          "explanation": "Notification queue experienced backlog accumulation (4600 pending events) with an average wait time of 4264.51ms. The 8 background workers cannot keep pace with the payment arrival rate.",
+          "recommendation": "Scale notification background workers from 8 to 16 or implement batched notification dispatching."
+        }
+      ],
+      "error_details": null,
+      "stored_transaction_count": 5000
+    },
+    {
+      "id": "88c55e41-e8b4-4b6f-ad22-d99706398fe3",
+      "name": "Integration-Test-20tx",
+      "status": "COMPLETED",
+      "transaction_count": 20,
+      "workload_type": "mixed",
+      "processing_mode": "concurrent",
+      "concurrency_limit": 10,
+      "intl_percentage": 50.0,
+      "random_seed": 77,
+      "config_snapshot": {
+        "fraud_config": {},
+        "fx_config": {},
+        "notification_config": {}
+      },
+      "created_at": "2026-10-28 14:20:21.432161",
+      "started_at": "2026-10-28 14:20:21.447135",
+      "completed_at": "2026-10-28 14:20:21.559313",
+      "progress": 100.0,
+      "processed_count": 20,
+      "metrics": {
+        "total_transactions": 20,
+        "total_payment_time_s": 0.0367,
+        "full_pipeline_time_s": 0.0854,
+        "throughput_tps": 544.51,
+        "pipeline_throughput_tps": 234.32,
+        "avg_response_time_ms": 14.76,
+        "p50_response_time_ms": 13.78,
+        "p95_response_time_ms": 24.2,
+        "p99_response_time_ms": 25.46,
+        "success_count": 15,
+        "success_rate_pct": 75.0,
+        "fraud_flagged_count": 5,
+        "fraud_rate_pct": 25.0,
+        "failed_count": 0,
+        "failure_rate_pct": 0.0,
+        "domestic_count": 12,
+        "international_count": 8,
+        "fx_conversions": {
+          "total_intl": 8,
+          "success_count": 8,
+          "failure_count": 0,
+          "avg_fx_latency_ms": 3.11,
+          "p95_fx_latency_ms": 16.14
+        },
+        "service_latencies": {
+          "payment_avg_ms": 0.65,
+          "payment_p95_ms": 0.88,
+          "fraud_avg_ms": 12.85,
+          "fraud_p95_ms": 23.53,
+          "fx_avg_ms": 3.11,
+          "fx_p95_ms": 16.14,
+          "notification_avg_wait_ms": 15.22,
+          "notification_p95_wait_ms": 37.18,
+          "notification_avg_processing_ms": 11.54
+        },
+        "notification_metrics": {
+          "queued_count": 20,
+          "processed_count": 20,
+          "success_count": 20,
+          "failed_count": 0,
+          "max_queue_size": 15,
+          "current_queue_size": 0,
+          "avg_wait_time_ms": 15.22,
+          "p95_wait_time_ms": 37.18,
+          "avg_processing_time_ms": 11.54,
+          "drain_time_ms": 48.61,
+          "num_workers": 4
+        },
+        "resource_usage": {
+          "cpu_percent": 0.0,
+          "memory_mb": 98.04
+        }
+      },
+      "bottlenecks": [
+        {
+          "title": "Insufficient Data for Statistical Bottleneck Analysis",
+          "severity": "INFO",
+          "supporting_measurements": {
+            "transaction_count": 20
+          },
+          "explanation": "Workloads smaller than 50 transactions do not exhibit steady-state queue or resource characteristics.",
+          "recommendation": "Execute a workload of at least 500 to 1,000 transactions for conclusive bottleneck detection."
+        }
+      ],
+      "error_details": null,
+      "stored_transaction_count": 20
+    },
+    {
+      "id": "0eb72827-522d-4ebd-a09c-e9089168e0cf",
+      "name": "Benchmark-1000tx-Concurrent",
+      "status": "COMPLETED",
+      "transaction_count": 1000,
+      "workload_type": "mixed",
+      "processing_mode": "concurrent",
+      "concurrency_limit": 50,
+      "intl_percentage": 50.0,
+      "random_seed": 42,
+      "config_snapshot": {
+        "fraud_config": {},
+        "fx_config": {
+          "use_cache": true,
+          "base_latency_ms": 8
+        },
+        "notification_config": {
+          "num_workers": 4
+        }
+      },
+      "created_at": "2026-10-28 14:22:16.481154",
+      "started_at": "2026-10-28 14:22:16.505628",
+      "completed_at": "2026-10-28 14:22:20.351318",
+      "progress": 100.0,
+      "processed_count": 1000,
+      "metrics": {
+        "total_transactions": 1000,
+        "total_payment_time_s": 0.5587,
+        "full_pipeline_time_s": 3.6351,
+        "throughput_tps": 1789.8,
+        "pipeline_throughput_tps": 275.09,
+        "avg_response_time_ms": 21.58,
+        "p50_response_time_ms": 17.66,
+        "p95_response_time_ms": 52.31,
+        "p99_response_time_ms": 73.07,
+        "success_count": 681,
+        "success_rate_pct": 68.1,
+        "fraud_flagged_count": 236,
+        "fraud_rate_pct": 23.6,
+        "failed_count": 83,
+        "failure_rate_pct": 8.3,
+        "domestic_count": 503,
+        "international_count": 497,
+        "fx_conversions": {
+          "total_intl": 497,
+          "success_count": 414,
+          "failure_count": 83,
+          "avg_fx_latency_ms": 0.21,
+          "p95_fx_latency_ms": 0.01
+        },
+        "service_latencies": {
+          "payment_avg_ms": 14.6,
+          "payment_p95_ms": 42.7,
+          "fraud_avg_ms": 6.02,
+          "fraud_p95_ms": 18.9,
+          "fx_avg_ms": 0.21,
+          "fx_p95_ms": 0.01,
+          "notification_avg_wait_ms": 1632.71,
+          "notification_p95_wait_ms": 2973.42,
+          "notification_avg_processing_ms": 12.82
+        },
+        "notification_metrics": {
+          "queued_count": 1000,
+          "processed_count": 1000,
+          "success_count": 1000,
+          "failed_count": 0,
+          "max_queue_size": 920,
+          "current_queue_size": 0,
+          "avg_wait_time_ms": 1632.71,
+          "p95_wait_time_ms": 2973.42,
+          "avg_processing_time_ms": 12.82,
+          "drain_time_ms": 3076.39,
+          "num_workers": 4
+        },
+        "resource_usage": {
+          "cpu_percent": 18.7,
+          "memory_mb": 99.8
+        }
+      },
+      "bottlenecks": [
+        {
+          "title": "Asynchronous Notification Delivery Bottleneck",
+          "severity": "HIGH",
+          "supporting_measurements": {
+            "max_observed_queue_size": 920,
+            "avg_queue_wait_ms": 1632.71,
+            "worker_count": 4
+          },
+          "explanation": "Notification queue experienced backlog accumulation (920 pending events) with an average wait time of 1632.71ms. The 4 background workers cannot keep pace with the payment arrival rate.",
+          "recommendation": "Scale notification background workers from 4 to 8 or implement batched notification dispatching."
+        }
+      ],
+      "error_details": null,
+      "stored_transaction_count": 1000
+    },
+    {
+      "id": "490e62f2-adda-4c2c-83c0-891dcc98ad9a",
+      "name": "Smoke-Test-100tx",
+      "status": "COMPLETED",
+      "transaction_count": 100,
+      "workload_type": "mixed",
+      "processing_mode": "concurrent",
+      "concurrency_limit": 25,
+      "intl_percentage": 50.0,
+      "random_seed": 42,
+      "config_snapshot": {
+        "fraud_config": {},
+        "fx_config": {
+          "use_cache": true,
+          "base_latency_ms": 8
+        },
+        "notification_config": {
+          "num_workers": 4
+        }
+      },
+      "created_at": "2026-10-28 14:28:36.434875",
+      "started_at": "2026-10-28 14:28:36.454861",
+      "completed_at": "2026-10-28 14:28:36.945082",
+      "progress": 100.0,
+      "processed_count": 100,
+      "metrics": {
+        "total_transactions": 100,
+        "total_payment_time_s": 0.0944,
+        "full_pipeline_time_s": 0.4353,
+        "throughput_tps": 1058.98,
+        "pipeline_throughput_tps": 229.7,
+        "avg_response_time_ms": 15.03,
+        "p50_response_time_ms": 12.73,
+        "p95_response_time_ms": 26.68,
+        "p99_response_time_ms": 30.81,
+        "success_count": 78,
+        "success_rate_pct": 78.0,
+        "fraud_flagged_count": 11,
+        "fraud_rate_pct": 11.0,
+        "failed_count": 11,
+        "failure_rate_pct": 11.0,
+        "domestic_count": 53,
+        "international_count": 47,
+        "fx_conversions": {
+          "total_intl": 47,
+          "success_count": 36,
+          "failure_count": 11,
+          "avg_fx_latency_ms": 1.38,
+          "p95_fx_latency_ms": 10.0
+        },
+        "service_latencies": {
+          "payment_avg_ms": 7.18,
+          "payment_p95_ms": 12.27,
+          "fraud_avg_ms": 5.77,
+          "fraud_p95_ms": 13.61,
+          "fx_avg_ms": 1.38,
+          "fx_p95_ms": 10.0,
+          "notification_avg_wait_ms": 182.0,
+          "notification_p95_wait_ms": 329.9,
+          "notification_avg_processing_ms": 14.57
+        },
+        "notification_metrics": {
+          "queued_count": 100,
+          "processed_count": 100,
+          "success_count": 100,
+          "failed_count": 0,
+          "max_queue_size": 84,
+          "current_queue_size": 0,
+          "avg_wait_time_ms": 182.0,
+          "p95_wait_time_ms": 329.9,
+          "avg_processing_time_ms": 14.57,
+          "drain_time_ms": 340.91,
+          "num_workers": 4
+        },
+        "resource_usage": {
+          "cpu_percent": 15.1,
+          "memory_mb": 106.82
+        }
+      },
+      "bottlenecks": [
+        {
+          "title": "Asynchronous Notification Delivery Bottleneck",
+          "severity": "HIGH",
+          "supporting_measurements": {
+            "max_observed_queue_size": 84,
+            "avg_queue_wait_ms": 182.0,
+            "worker_count": 4
+          },
+          "explanation": "Notification queue experienced backlog accumulation (84 pending events) with an average wait time of 182.0ms. The 4 background workers cannot keep pace with the payment arrival rate.",
+          "recommendation": "Scale notification background workers from 4 to 8 or implement batched notification dispatching."
+        }
+      ],
+      "error_details": null,
+      "stored_transaction_count": 100
+    },
+    {
+      "id": "0986c8d8-0f4b-419f-aed4-a9744d67a01f",
+      "name": "Smoke-Test-100tx",
+      "status": "COMPLETED",
+      "transaction_count": 100,
+      "workload_type": "mixed",
+      "processing_mode": "concurrent",
+      "concurrency_limit": 25,
+      "intl_percentage": 50.0,
+      "random_seed": 42,
+      "config_snapshot": {
+        "fraud_config": {},
+        "fx_config": {
+          "use_cache": true,
+          "base_latency_ms": 8
+        },
+        "notification_config": {
+          "num_workers": 4
+        }
+      },
+      "created_at": "2026-10-28 14:28:39.696953",
+      "started_at": "2026-10-28 14:28:39.714339",
+      "completed_at": "2026-10-28 14:28:40.205310",
+      "progress": 100.0,
+      "processed_count": 100,
+      "metrics": {
+        "total_transactions": 100,
+        "total_payment_time_s": 0.099,
+        "full_pipeline_time_s": 0.4393,
+        "throughput_tps": 1009.91,
+        "pipeline_throughput_tps": 227.63,
+        "avg_response_time_ms": 16.36,
+        "p50_response_time_ms": 15.03,
+        "p95_response_time_ms": 28.09,
+        "p99_response_time_ms": 33.93,
+        "success_count": 78,
+        "success_rate_pct": 78.0,
+        "fraud_flagged_count": 11,
+        "fraud_rate_pct": 11.0,
+        "failed_count": 11,
+        "failure_rate_pct": 11.0,
+        "domestic_count": 53,
+        "international_count": 47,
+        "fx_conversions": {
+          "total_intl": 47,
+          "success_count": 36,
+          "failure_count": 11,
+          "avg_fx_latency_ms": 1.53,
+          "p95_fx_latency_ms": 14.07
+        },
+        "service_latencies": {
+          "payment_avg_ms": 8.26,
+          "payment_p95_ms": 12.67,
+          "fraud_avg_ms": 6.16,
+          "fraud_p95_ms": 16.45,
+          "fx_avg_ms": 1.53,
+          "fx_p95_ms": 14.07,
+          "notification_avg_wait_ms": 181.84,
+          "notification_p95_wait_ms": 326.68,
+          "notification_avg_processing_ms": 14.16
+        },
+        "notification_metrics": {
+          "queued_count": 100,
+          "processed_count": 100,
+          "success_count": 100,
+          "failed_count": 0,
+          "max_queue_size": 84,
+          "current_queue_size": 0,
+          "avg_wait_time_ms": 181.84,
+          "p95_wait_time_ms": 326.68,
+          "avg_processing_time_ms": 14.16,
+          "drain_time_ms": 340.28,
+          "num_workers": 4
+        },
+        "resource_usage": {
+          "cpu_percent": 13.6,
+          "memory_mb": 107.35
+        }
+      },
+      "bottlenecks": [
+        {
+          "title": "Asynchronous Notification Delivery Bottleneck",
+          "severity": "HIGH",
+          "supporting_measurements": {
+            "max_observed_queue_size": 84,
+            "avg_queue_wait_ms": 181.84,
+            "worker_count": 4
+          },
+          "explanation": "Notification queue experienced backlog accumulation (84 pending events) with an average wait time of 181.84ms. The 4 background workers cannot keep pace with the payment arrival rate.",
+          "recommendation": "Scale notification background workers from 4 to 8 or implement batched notification dispatching."
+        }
+      ],
+      "error_details": null,
+      "stored_transaction_count": 100
+    }
+  ]
+}

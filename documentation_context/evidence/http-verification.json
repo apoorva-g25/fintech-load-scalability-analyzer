@@ -1,0 +1,1478 @@
+{
+  "date": "2026-10-30",
+  "scope": "local HTTP; disposable SQLite; not hosted",
+  "examples": [
+    {
+      "method": "GET",
+      "path": "/",
+      "request": null,
+      "status": 200,
+      "response": {
+        "message": "Welcome to FinTech System Load & Scalability Analyzer",
+        "version": "1.0.0",
+        "docs_url": "/docs",
+        "api_prefix": "/api"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "request": null,
+      "status": 200,
+      "response": {
+        "status": "healthy",
+        "service": "FinTech System Load & Scalability Analyzer",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/docs",
+      "request": null,
+      "status": 200,
+      "response": {
+        "content_type": "text/html; charset=utf-8",
+        "bytes": 1041
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/config",
+      "request": null,
+      "status": 200,
+      "response": {
+        "domestic_currency": "INR",
+        "supported_currencies": [
+          "INR",
+          "USD",
+          "EUR",
+          "GBP",
+          "SGD",
+          "AED",
+          "JPY"
+        ],
+        "default_fx_fee_pct": 1.0,
+        "fraud_amount_threshold": 250000.0,
+        "fraud_velocity_window_seconds": 60,
+        "fraud_velocity_max_txns": 5,
+        "fraud_probabilistic_rate": 0.015,
+        "default_concurrency": 50,
+        "default_workers": 4,
+        "base_payment_delay_ms": 5.0,
+        "base_fx_delay_ms": 8.0,
+        "base_fraud_delay_ms": 6.0,
+        "base_notification_delay_ms": 12.0
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/config",
+      "request": {
+        "base_fx_delay_ms": 8.0
+      },
+      "status": 200,
+      "response": {
+        "status": "updated",
+        "config": {
+          "domestic_currency": "INR",
+          "supported_currencies": [
+            "INR",
+            "USD",
+            "EUR",
+            "GBP",
+            "SGD",
+            "AED",
+            "JPY"
+          ],
+          "default_fx_fee_pct": 1.0,
+          "fraud_amount_threshold": 250000.0,
+          "fraud_velocity_window_seconds": 60,
+          "fraud_velocity_max_txns": 5,
+          "fraud_probabilistic_rate": 0.015,
+          "default_concurrency": 50,
+          "default_workers": 4,
+          "base_payment_delay_ms": 5.0,
+          "base_fx_delay_ms": 8.0,
+          "base_fraud_delay_ms": 6.0,
+          "base_notification_delay_ms": 12.0
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/fx/rates",
+      "request": null,
+      "status": 200,
+      "response": [
+        {
+          "is_active": true,
+          "source_currency": "USD",
+          "destination_currency": "INR",
+          "id": 1,
+          "rate": 83.25,
+          "updated_at": "2026-10-30T12:17:18.669120"
+        },
+        {
+          "is_active": true,
+          "source_currency": "EUR",
+          "destination_currency": "INR",
+          "id": 2,
+          "rate": 89.5,
+          "updated_at": "2026-10-30T12:17:18.669120"
+        },
+        {
+          "is_active": true,
+          "source_currency": "GBP",
+          "destination_currency": "INR",
+          "id": 3,
+          "rate": 105.1,
+          "updated_at": "2026-10-30T12:17:18.669120"
+        },
+        {
+          "is_active": true,
+          "source_currency": "SGD",
+          "destination_currency": "INR",
+          "id": 4,
+          "rate": 61.8,
+          "updated_at": "2026-10-30T12:17:18.669120"
+        },
+        {
+          "is_active": true,
+          "source_currency": "AED",
+          "destination_currency": "INR",
+          "id": 5,
+          "rate": 22.65,
+          "updated_at": "2026-10-30T12:17:18.669120"
+        },
+        {
+          "is_active": true,
+          "source_currency": "USD",
+          "destination_currency": "EUR",
+          "id": 6,
+          "rate": 0.93,
+          "updated_at": "2026-10-30T12:17:18.669120"
+        },
+        {
+          "is_active": true,
+          "source_currency": "GBP",
+          "destination_currency": "USD",
+          "id": 7,
+          "rate": 1.26,
+          "updated_at": "2026-10-30T12:17:18.669120"
+        }
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/fx/rates",
+      "request": {
+        "source_currency": "USD",
+        "destination_currency": "INR",
+        "rate": 83.25,
+        "is_active": true
+      },
+      "status": 200,
+      "response": {
+        "is_active": true,
+        "source_currency": "USD",
+        "destination_currency": "INR",
+        "id": 1,
+        "rate": 83.25,
+        "updated_at": "2026-10-30T12:17:18.669120"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/test-runs",
+      "request": {
+        "name": "HTTP-Smoke-sequential",
+        "transaction_count": 20,
+        "processing_mode": "sequential",
+        "workload_type": "mixed",
+        "random_seed": 77,
+        "concurrency_limit": 10
+      },
+      "status": 200,
+      "response": {
+        "id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+        "name": "HTTP-Smoke-sequential",
+        "status": "QUEUED",
+        "transaction_count": 20,
+        "workload_type": "mixed",
+        "processing_mode": "sequential",
+        "concurrency_limit": 10,
+        "intl_percentage": 50.0,
+        "random_seed": 77,
+        "created_at": "2026-10-30T12:17:19.246330",
+        "started_at": null,
+        "completed_at": null,
+        "progress": 0.0,
+        "processed_count": 0,
+        "metrics": null,
+        "bottlenecks": null,
+        "error_details": null
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/test-runs/62fcc31c-2859-4ebc-bff1-66a7622886a7",
+      "request": null,
+      "status": 200,
+      "response": {
+        "id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+        "name": "HTTP-Smoke-sequential",
+        "status": "COMPLETED",
+        "transaction_count": 20,
+        "workload_type": "mixed",
+        "processing_mode": "sequential",
+        "concurrency_limit": 10,
+        "intl_percentage": 50.0,
+        "random_seed": 77,
+        "created_at": "2026-10-30T12:17:19.246330",
+        "started_at": "2026-10-30T12:17:19.264285",
+        "completed_at": "2026-10-30T12:17:19.392073",
+        "progress": 100.0,
+        "processed_count": 20,
+        "metrics": {
+          "total_transactions": 20,
+          "total_payment_time_s": 0.1129,
+          "full_pipeline_time_s": 0.1134,
+          "throughput_tps": 177.13,
+          "pipeline_throughput_tps": 176.38,
+          "avg_response_time_ms": 0.55,
+          "p50_response_time_ms": 0.18,
+          "p95_response_time_ms": 2.72,
+          "p99_response_time_ms": 3.19,
+          "success_count": 15,
+          "success_rate_pct": 75.0,
+          "fraud_flagged_count": 5,
+          "fraud_rate_pct": 25.0,
+          "failed_count": 0,
+          "failure_rate_pct": 0.0,
+          "domestic_count": 12,
+          "international_count": 8,
+          "fx_conversions": {
+            "total_intl": 8,
+            "success_count": 8,
+            "failure_count": 0,
+            "avg_fx_latency_ms": 0.39,
+            "p95_fx_latency_ms": 1.99
+          },
+          "service_latencies": {
+            "payment_avg_ms": 0.2,
+            "payment_p95_ms": 0.51,
+            "fraud_avg_ms": 0.17,
+            "fraud_p95_ms": 0.27,
+            "fx_avg_ms": 0.39,
+            "fx_p95_ms": 1.99,
+            "notification_avg_wait_ms": 4.6,
+            "notification_p95_wait_ms": 14.4,
+            "notification_avg_processing_ms": 4.83
+          },
+          "notification_metrics": {
+            "queued_count": 20,
+            "processed_count": 20,
+            "success_count": 20,
+            "failed_count": 0,
+            "max_queue_size": 1,
+            "current_queue_size": 0,
+            "avg_wait_time_ms": 4.6,
+            "p95_wait_time_ms": 14.4,
+            "avg_processing_time_ms": 4.83,
+            "drain_time_ms": 0.47,
+            "num_workers": 4
+          },
+          "resource_usage": {
+            "cpu_percent": 29.2,
+            "memory_mb": 91.61
+          }
+        },
+        "bottlenecks": [
+          {
+            "title": "Insufficient Data for Statistical Bottleneck Analysis",
+            "severity": "INFO",
+            "supporting_measurements": {
+              "transaction_count": 20
+            },
+            "explanation": "Workloads smaller than 50 transactions do not exhibit steady-state queue or resource characteristics.",
+            "recommendation": "Execute a workload of at least 500 to 1,000 transactions for conclusive bottleneck detection."
+          }
+        ],
+        "error_details": null
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/test-runs/62fcc31c-2859-4ebc-bff1-66a7622886a7/status",
+      "request": null,
+      "status": 200,
+      "response": {
+        "id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+        "status": "COMPLETED",
+        "progress": 100.0,
+        "processed_count": 20,
+        "transaction_count": 20,
+        "metrics": {
+          "total_transactions": 20,
+          "total_payment_time_s": 0.1129,
+          "full_pipeline_time_s": 0.1134,
+          "throughput_tps": 177.13,
+          "pipeline_throughput_tps": 176.38,
+          "avg_response_time_ms": 0.55,
+          "p50_response_time_ms": 0.18,
+          "p95_response_time_ms": 2.72,
+          "p99_response_time_ms": 3.19,
+          "success_count": 15,
+          "success_rate_pct": 75.0,
+          "fraud_flagged_count": 5,
+          "fraud_rate_pct": 25.0,
+          "failed_count": 0,
+          "failure_rate_pct": 0.0,
+          "domestic_count": 12,
+          "international_count": 8,
+          "fx_conversions": {
+            "total_intl": 8,
+            "success_count": 8,
+            "failure_count": 0,
+            "avg_fx_latency_ms": 0.39,
+            "p95_fx_latency_ms": 1.99
+          },
+          "service_latencies": {
+            "payment_avg_ms": 0.2,
+            "payment_p95_ms": 0.51,
+            "fraud_avg_ms": 0.17,
+            "fraud_p95_ms": 0.27,
+            "fx_avg_ms": 0.39,
+            "fx_p95_ms": 1.99,
+            "notification_avg_wait_ms": 4.6,
+            "notification_p95_wait_ms": 14.4,
+            "notification_avg_processing_ms": 4.83
+          },
+          "notification_metrics": {
+            "queued_count": 20,
+            "processed_count": 20,
+            "success_count": 20,
+            "failed_count": 0,
+            "max_queue_size": 1,
+            "current_queue_size": 0,
+            "avg_wait_time_ms": 4.6,
+            "p95_wait_time_ms": 14.4,
+            "avg_processing_time_ms": 4.83,
+            "drain_time_ms": 0.47,
+            "num_workers": 4
+          },
+          "resource_usage": {
+            "cpu_percent": 29.2,
+            "memory_mb": 91.61
+          }
+        },
+        "bottlenecks": [
+          {
+            "title": "Insufficient Data for Statistical Bottleneck Analysis",
+            "severity": "INFO",
+            "supporting_measurements": {
+              "transaction_count": 20
+            },
+            "explanation": "Workloads smaller than 50 transactions do not exhibit steady-state queue or resource characteristics.",
+            "recommendation": "Execute a workload of at least 500 to 1,000 transactions for conclusive bottleneck detection."
+          }
+        ],
+        "error_details": null
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/test-runs/62fcc31c-2859-4ebc-bff1-66a7622886a7/transactions?page=1&page_size=10",
+      "request": null,
+      "status": 200,
+      "response": {
+        "total": 20,
+        "page": 1,
+        "page_size": 10,
+        "items": [
+          {
+            "id": "e99b7314-eb6a-46b1-8500-0c0bd8866d84",
+            "test_run_id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+            "customer_id": "CUST_0193",
+            "transaction_type": "international",
+            "source_currency": "SGD",
+            "destination_currency": "INR",
+            "original_amount": "680.3",
+            "exchange_rate": "61.8",
+            "converted_amount": "41622.11",
+            "fx_fee": "420.43",
+            "status": "SUCCESS",
+            "fraud_flagged": false,
+            "fraud_reason": null,
+            "total_duration_ms": 0.65,
+            "payment_duration_ms": 0.51,
+            "fraud_duration_ms": 0.11,
+            "fx_duration_ms": 0.01,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.377564"
+          },
+          {
+            "id": "e304b1f8-2394-423c-880b-aeffef6ed441",
+            "test_run_id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+            "customer_id": "CUST_0038",
+            "transaction_type": "international",
+            "source_currency": "SGD",
+            "destination_currency": "INR",
+            "original_amount": "4120.79",
+            "exchange_rate": "61.8",
+            "converted_amount": "252118.17",
+            "fx_fee": "2546.65",
+            "status": "FLAGGED",
+            "fraud_flagged": true,
+            "fraud_reason": "High-value transaction: 252118.17 exceeds threshold 250000.00",
+            "total_duration_ms": 0.18,
+            "payment_duration_ms": 0.12,
+            "fraud_duration_ms": 0.03,
+            "fx_duration_ms": 0.01,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.372387"
+          },
+          {
+            "id": "d8babe63-7435-426d-b0c1-24fb6a61db79",
+            "test_run_id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+            "customer_id": "CUST_0015",
+            "transaction_type": "domestic",
+            "source_currency": "INR",
+            "destination_currency": "INR",
+            "original_amount": "29487.89",
+            "exchange_rate": "1.0",
+            "converted_amount": "29487.89",
+            "fx_fee": "0.00",
+            "status": "SUCCESS",
+            "fraud_flagged": false,
+            "fraud_reason": null,
+            "total_duration_ms": 0.17,
+            "payment_duration_ms": 0.12,
+            "fraud_duration_ms": 0.03,
+            "fx_duration_ms": 0.0,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.367497"
+          },
+          {
+            "id": "b773945f-5d15-4c19-8fe3-4654ec1ed018",
+            "test_run_id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+            "customer_id": "CUST_0111",
+            "transaction_type": "international",
+            "source_currency": "INR",
+            "destination_currency": "AED",
+            "original_amount": "3105.02",
+            "exchange_rate": "0.044150",
+            "converted_amount": "135.72",
+            "fx_fee": "1.37",
+            "status": "FLAGGED",
+            "fraud_flagged": true,
+            "fraud_reason": "High-value transaction: 257716.660 exceeds threshold 250000.00",
+            "total_duration_ms": 0.23,
+            "payment_duration_ms": 0.15,
+            "fraud_duration_ms": 0.04,
+            "fx_duration_ms": 0.02,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.363756"
+          },
+          {
+            "id": "f6b3f544-8d52-491f-b43a-76f4a5d248cd",
+            "test_run_id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+            "customer_id": "CUST_0014",
+            "transaction_type": "international",
+            "source_currency": "GBP",
+            "destination_currency": "INR",
+            "original_amount": "3426.7",
+            "exchange_rate": "105.1",
+            "converted_amount": "356544.71",
+            "fx_fee": "3601.46",
+            "status": "FLAGGED",
+            "fraud_flagged": true,
+            "fraud_reason": "High-value transaction: 356544.71 exceeds threshold 250000.00",
+            "total_duration_ms": 0.18,
+            "payment_duration_ms": 0.11,
+            "fraud_duration_ms": 0.03,
+            "fx_duration_ms": 0.01,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.358695"
+          },
+          {
+            "id": "8a1e7fb3-098b-490b-b7dc-ce85ea901cc0",
+            "test_run_id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+            "customer_id": "CUST_0197",
+            "transaction_type": "domestic",
+            "source_currency": "INR",
+            "destination_currency": "INR",
+            "original_amount": "496359.43",
+            "exchange_rate": "1.0",
+            "converted_amount": "496359.43",
+            "fx_fee": "0.00",
+            "status": "FLAGGED",
+            "fraud_flagged": true,
+            "fraud_reason": "High-value transaction: 496359.43 exceeds threshold 250000.00",
+            "total_duration_ms": 0.18,
+            "payment_duration_ms": 0.12,
+            "fraud_duration_ms": 0.04,
+            "fx_duration_ms": 0.0,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.354688"
+          },
+          {
+            "id": "2cf4959d-3b76-4a2a-ac2d-d60f56a8138b",
+            "test_run_id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+            "customer_id": "CUST_0136",
+            "transaction_type": "international",
+            "source_currency": "SGD",
+            "destination_currency": "INR",
+            "original_amount": "3328.22",
+            "exchange_rate": "61.8",
+            "converted_amount": "203627.16",
+            "fx_fee": "2056.84",
+            "status": "SUCCESS",
+            "fraud_flagged": false,
+            "fraud_reason": null,
+            "total_duration_ms": 0.17,
+            "payment_duration_ms": 0.11,
+            "fraud_duration_ms": 0.04,
+            "fx_duration_ms": 0.01,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.350688"
+          },
+          {
+            "id": "8d5bedbc-d384-4f3e-90ca-93b5a02c21f2",
+            "test_run_id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+            "customer_id": "CUST_0198",
+            "transaction_type": "domestic",
+            "source_currency": "INR",
+            "destination_currency": "INR",
+            "original_amount": "42569.42",
+            "exchange_rate": "1.0",
+            "converted_amount": "42569.42",
+            "fx_fee": "0.00",
+            "status": "SUCCESS",
+            "fraud_flagged": false,
+            "fraud_reason": null,
+            "total_duration_ms": 0.14,
+            "payment_duration_ms": 0.09,
+            "fraud_duration_ms": 0.03,
+            "fx_duration_ms": 0.0,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.346688"
+          },
+          {
+            "id": "4c846daf-7d30-46f9-86b6-bad27e995e51",
+            "test_run_id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+            "customer_id": "CUST_0142",
+            "transaction_type": "domestic",
+            "source_currency": "INR",
+            "destination_currency": "INR",
+            "original_amount": "23884.55",
+            "exchange_rate": "1.0",
+            "converted_amount": "23884.55",
+            "fx_fee": "0.00",
+            "status": "SUCCESS",
+            "fraud_flagged": false,
+            "fraud_reason": null,
+            "total_duration_ms": 0.18,
+            "payment_duration_ms": 0.12,
+            "fraud_duration_ms": 0.05,
+            "fx_duration_ms": 0.0,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.341679"
+          },
+          {
+            "id": "6d9fe92e-afc4-48ee-93c3-e90669205348",
+            "test_run_id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+            "customer_id": "CUST_0138",
+            "transaction_type": "domestic",
+            "source_currency": "INR",
+            "destination_currency": "INR",
+            "original_amount": "28255.4",
+            "exchange_rate": "1.0",
+            "converted_amount": "28255.4",
+            "fx_fee": "0.00",
+            "status": "SUCCESS",
+            "fraud_flagged": false,
+            "fraud_reason": null,
+            "total_duration_ms": 0.15,
+            "payment_duration_ms": 0.11,
+            "fraud_duration_ms": 0.03,
+            "fx_duration_ms": 0.0,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.336171"
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/bottlenecks/62fcc31c-2859-4ebc-bff1-66a7622886a7",
+      "request": null,
+      "status": 200,
+      "response": {
+        "test_run_id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+        "test_run_name": "HTTP-Smoke-sequential",
+        "bottlenecks": [
+          {
+            "title": "Insufficient Data for Statistical Bottleneck Analysis",
+            "severity": "INFO",
+            "supporting_measurements": {
+              "transaction_count": 20
+            },
+            "explanation": "Workloads smaller than 50 transactions do not exhibit steady-state queue or resource characteristics.",
+            "recommendation": "Execute a workload of at least 500 to 1,000 transactions for conclusive bottleneck detection."
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/exports/62fcc31c-2859-4ebc-bff1-66a7622886a7",
+      "request": null,
+      "status": 200,
+      "response": {
+        "content_type": "text/csv; charset=utf-8",
+        "bytes": 4448
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/test-runs",
+      "request": {
+        "name": "HTTP-Smoke-concurrent",
+        "transaction_count": 20,
+        "processing_mode": "concurrent",
+        "workload_type": "mixed",
+        "random_seed": 77,
+        "concurrency_limit": 10
+      },
+      "status": 200,
+      "response": {
+        "id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+        "name": "HTTP-Smoke-concurrent",
+        "status": "QUEUED",
+        "transaction_count": 20,
+        "workload_type": "mixed",
+        "processing_mode": "concurrent",
+        "concurrency_limit": 10,
+        "intl_percentage": 50.0,
+        "random_seed": 77,
+        "created_at": "2026-10-30T12:17:19.483081",
+        "started_at": null,
+        "completed_at": null,
+        "progress": 0.0,
+        "processed_count": 0,
+        "metrics": null,
+        "bottlenecks": null,
+        "error_details": null
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/test-runs/25e3dc82-3227-4183-b691-5c3fb56fb968",
+      "request": null,
+      "status": 200,
+      "response": {
+        "id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+        "name": "HTTP-Smoke-concurrent",
+        "status": "COMPLETED",
+        "transaction_count": 20,
+        "workload_type": "mixed",
+        "processing_mode": "concurrent",
+        "concurrency_limit": 10,
+        "intl_percentage": 50.0,
+        "random_seed": 77,
+        "created_at": "2026-10-30T12:17:19.483081",
+        "started_at": "2026-10-30T12:17:19.489830",
+        "completed_at": "2026-10-30T12:17:19.539028",
+        "progress": 100.0,
+        "processed_count": 20,
+        "metrics": {
+          "total_transactions": 20,
+          "total_payment_time_s": 0.014,
+          "full_pipeline_time_s": 0.0364,
+          "throughput_tps": 1427.59,
+          "pipeline_throughput_tps": 549.26,
+          "avg_response_time_ms": 3.79,
+          "p50_response_time_ms": 4.08,
+          "p95_response_time_ms": 5.95,
+          "p99_response_time_ms": 6.02,
+          "success_count": 15,
+          "success_rate_pct": 75.0,
+          "fraud_flagged_count": 5,
+          "fraud_rate_pct": 25.0,
+          "failed_count": 0,
+          "failure_rate_pct": 0.0,
+          "domestic_count": 12,
+          "international_count": 8,
+          "fx_conversions": {
+            "total_intl": 8,
+            "success_count": 8,
+            "failure_count": 0,
+            "avg_fx_latency_ms": 0.34,
+            "p95_fx_latency_ms": 1.73
+          },
+          "service_latencies": {
+            "payment_avg_ms": 0.44,
+            "payment_p95_ms": 0.51,
+            "fraud_avg_ms": 3.21,
+            "fraud_p95_ms": 5.68,
+            "fx_avg_ms": 0.34,
+            "fx_p95_ms": 1.73,
+            "notification_avg_wait_ms": 5.9,
+            "notification_p95_wait_ms": 12.08,
+            "notification_avg_processing_ms": 6.31
+          },
+          "notification_metrics": {
+            "queued_count": 20,
+            "processed_count": 20,
+            "success_count": 20,
+            "failed_count": 0,
+            "max_queue_size": 15,
+            "current_queue_size": 0,
+            "avg_wait_time_ms": 5.9,
+            "p95_wait_time_ms": 12.08,
+            "avg_processing_time_ms": 6.31,
+            "drain_time_ms": 22.4,
+            "num_workers": 4
+          },
+          "resource_usage": {
+            "cpu_percent": 20.4,
+            "memory_mb": 92.35
+          }
+        },
+        "bottlenecks": [
+          {
+            "title": "Insufficient Data for Statistical Bottleneck Analysis",
+            "severity": "INFO",
+            "supporting_measurements": {
+              "transaction_count": 20
+            },
+            "explanation": "Workloads smaller than 50 transactions do not exhibit steady-state queue or resource characteristics.",
+            "recommendation": "Execute a workload of at least 500 to 1,000 transactions for conclusive bottleneck detection."
+          }
+        ],
+        "error_details": null
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/test-runs/25e3dc82-3227-4183-b691-5c3fb56fb968/status",
+      "request": null,
+      "status": 200,
+      "response": {
+        "id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+        "status": "COMPLETED",
+        "progress": 100.0,
+        "processed_count": 20,
+        "transaction_count": 20,
+        "metrics": {
+          "total_transactions": 20,
+          "total_payment_time_s": 0.014,
+          "full_pipeline_time_s": 0.0364,
+          "throughput_tps": 1427.59,
+          "pipeline_throughput_tps": 549.26,
+          "avg_response_time_ms": 3.79,
+          "p50_response_time_ms": 4.08,
+          "p95_response_time_ms": 5.95,
+          "p99_response_time_ms": 6.02,
+          "success_count": 15,
+          "success_rate_pct": 75.0,
+          "fraud_flagged_count": 5,
+          "fraud_rate_pct": 25.0,
+          "failed_count": 0,
+          "failure_rate_pct": 0.0,
+          "domestic_count": 12,
+          "international_count": 8,
+          "fx_conversions": {
+            "total_intl": 8,
+            "success_count": 8,
+            "failure_count": 0,
+            "avg_fx_latency_ms": 0.34,
+            "p95_fx_latency_ms": 1.73
+          },
+          "service_latencies": {
+            "payment_avg_ms": 0.44,
+            "payment_p95_ms": 0.51,
+            "fraud_avg_ms": 3.21,
+            "fraud_p95_ms": 5.68,
+            "fx_avg_ms": 0.34,
+            "fx_p95_ms": 1.73,
+            "notification_avg_wait_ms": 5.9,
+            "notification_p95_wait_ms": 12.08,
+            "notification_avg_processing_ms": 6.31
+          },
+          "notification_metrics": {
+            "queued_count": 20,
+            "processed_count": 20,
+            "success_count": 20,
+            "failed_count": 0,
+            "max_queue_size": 15,
+            "current_queue_size": 0,
+            "avg_wait_time_ms": 5.9,
+            "p95_wait_time_ms": 12.08,
+            "avg_processing_time_ms": 6.31,
+            "drain_time_ms": 22.4,
+            "num_workers": 4
+          },
+          "resource_usage": {
+            "cpu_percent": 20.4,
+            "memory_mb": 92.35
+          }
+        },
+        "bottlenecks": [
+          {
+            "title": "Insufficient Data for Statistical Bottleneck Analysis",
+            "severity": "INFO",
+            "supporting_measurements": {
+              "transaction_count": 20
+            },
+            "explanation": "Workloads smaller than 50 transactions do not exhibit steady-state queue or resource characteristics.",
+            "recommendation": "Execute a workload of at least 500 to 1,000 transactions for conclusive bottleneck detection."
+          }
+        ],
+        "error_details": null
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/test-runs/25e3dc82-3227-4183-b691-5c3fb56fb968/transactions?page=1&page_size=10",
+      "request": null,
+      "status": 200,
+      "response": {
+        "total": 20,
+        "page": 1,
+        "page_size": 10,
+        "items": [
+          {
+            "id": "b833d59b-e6b2-4349-a364-82619f5e4f4a",
+            "test_run_id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+            "customer_id": "CUST_0153",
+            "transaction_type": "domestic",
+            "source_currency": "INR",
+            "destination_currency": "INR",
+            "original_amount": "37792.96",
+            "exchange_rate": "1.0",
+            "converted_amount": "37792.96",
+            "fx_fee": "0.00",
+            "status": "SUCCESS",
+            "fraud_flagged": false,
+            "fraud_reason": null,
+            "total_duration_ms": 5.14,
+            "payment_duration_ms": 0.25,
+            "fraud_duration_ms": 4.88,
+            "fx_duration_ms": 0.0,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.503198"
+          },
+          {
+            "id": "582df4db-9f6f-4c08-8b18-bad24e0127e3",
+            "test_run_id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+            "customer_id": "CUST_0021",
+            "transaction_type": "domestic",
+            "source_currency": "INR",
+            "destination_currency": "INR",
+            "original_amount": "40561.71",
+            "exchange_rate": "1.0",
+            "converted_amount": "40561.71",
+            "fx_fee": "0.00",
+            "status": "SUCCESS",
+            "fraud_flagged": false,
+            "fraud_reason": null,
+            "total_duration_ms": 5.83,
+            "payment_duration_ms": 0.27,
+            "fraud_duration_ms": 5.56,
+            "fx_duration_ms": 0.0,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.504198"
+          },
+          {
+            "id": "a2a89f21-5dfc-493a-b277-3f78329de1c4",
+            "test_run_id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+            "customer_id": "CUST_0067",
+            "transaction_type": "domestic",
+            "source_currency": "INR",
+            "destination_currency": "INR",
+            "original_amount": "8706.79",
+            "exchange_rate": "1.0",
+            "converted_amount": "8706.79",
+            "fx_fee": "0.00",
+            "status": "SUCCESS",
+            "fraud_flagged": false,
+            "fraud_reason": null,
+            "total_duration_ms": 5.86,
+            "payment_duration_ms": 0.28,
+            "fraud_duration_ms": 5.57,
+            "fx_duration_ms": 0.0,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.504198"
+          },
+          {
+            "id": "0d11d0f7-668c-4ce1-a8f5-834462eef1f8",
+            "test_run_id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+            "customer_id": "CUST_0197",
+            "transaction_type": "domestic",
+            "source_currency": "INR",
+            "destination_currency": "INR",
+            "original_amount": "496359.43",
+            "exchange_rate": "1.0",
+            "converted_amount": "496359.43",
+            "fx_fee": "0.00",
+            "status": "FLAGGED",
+            "fraud_flagged": true,
+            "fraud_reason": "High-value transaction: 496359.43 exceeds threshold 250000.00",
+            "total_duration_ms": 5.87,
+            "payment_duration_ms": 0.28,
+            "fraud_duration_ms": 5.58,
+            "fx_duration_ms": 0.0,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.504198"
+          },
+          {
+            "id": "d98a8151-4898-440d-a7a1-08c0892cc2cb",
+            "test_run_id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+            "customer_id": "CUST_0198",
+            "transaction_type": "domestic",
+            "source_currency": "INR",
+            "destination_currency": "INR",
+            "original_amount": "42569.42",
+            "exchange_rate": "1.0",
+            "converted_amount": "42569.42",
+            "fx_fee": "0.00",
+            "status": "SUCCESS",
+            "fraud_flagged": false,
+            "fraud_reason": null,
+            "total_duration_ms": 5.93,
+            "payment_duration_ms": 0.25,
+            "fraud_duration_ms": 5.68,
+            "fx_duration_ms": 0.0,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.504198"
+          },
+          {
+            "id": "0f9be517-0cb6-444d-9d70-335f3e50f57a",
+            "test_run_id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+            "customer_id": "CUST_0182",
+            "transaction_type": "domestic",
+            "source_currency": "INR",
+            "destination_currency": "INR",
+            "original_amount": "38253.52",
+            "exchange_rate": "1.0",
+            "converted_amount": "38253.52",
+            "fx_fee": "0.00",
+            "status": "SUCCESS",
+            "fraud_flagged": false,
+            "fraud_reason": null,
+            "total_duration_ms": 6.04,
+            "payment_duration_ms": 4.92,
+            "fraud_duration_ms": 1.11,
+            "fx_duration_ms": 0.0,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.504198"
+          },
+          {
+            "id": "f46fb302-ce46-4a95-b89f-16a2b5b813e1",
+            "test_run_id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+            "customer_id": "CUST_0100",
+            "transaction_type": "international",
+            "source_currency": "USD",
+            "destination_currency": "INR",
+            "original_amount": "2490.67",
+            "exchange_rate": "83.25",
+            "converted_amount": "205274.80",
+            "fx_fee": "2073.48",
+            "status": "SUCCESS",
+            "fraud_flagged": false,
+            "fraud_reason": null,
+            "total_duration_ms": 5.93,
+            "payment_duration_ms": 0.25,
+            "fraud_duration_ms": 5.67,
+            "fx_duration_ms": 0.01,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.504198"
+          },
+          {
+            "id": "7271a01a-86ae-463f-802b-80a98322937e",
+            "test_run_id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+            "customer_id": "CUST_0014",
+            "transaction_type": "international",
+            "source_currency": "GBP",
+            "destination_currency": "INR",
+            "original_amount": "3426.7",
+            "exchange_rate": "105.1",
+            "converted_amount": "356544.71",
+            "fx_fee": "3601.46",
+            "status": "FLAGGED",
+            "fraud_flagged": true,
+            "fraud_reason": "High-value transaction: 356544.71 exceeds threshold 250000.00",
+            "total_duration_ms": 5.89,
+            "payment_duration_ms": 0.23,
+            "fraud_duration_ms": 5.65,
+            "fx_duration_ms": 0.0,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.504198"
+          },
+          {
+            "id": "804cf1e6-3eaf-46af-8068-de6643a5fed5",
+            "test_run_id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+            "customer_id": "CUST_0111",
+            "transaction_type": "international",
+            "source_currency": "INR",
+            "destination_currency": "AED",
+            "original_amount": "3105.02",
+            "exchange_rate": "0.044150",
+            "converted_amount": "135.72",
+            "fx_fee": "1.37",
+            "status": "FLAGGED",
+            "fraud_flagged": true,
+            "fraud_reason": "High-value transaction: 257716.660 exceeds threshold 250000.00",
+            "total_duration_ms": 5.89,
+            "payment_duration_ms": 0.23,
+            "fraud_duration_ms": 5.66,
+            "fx_duration_ms": 0.0,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.504198"
+          },
+          {
+            "id": "9f3cde13-c5dc-401f-82e2-76ca170a82b8",
+            "test_run_id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+            "customer_id": "CUST_0136",
+            "transaction_type": "international",
+            "source_currency": "SGD",
+            "destination_currency": "INR",
+            "original_amount": "3328.22",
+            "exchange_rate": "61.8",
+            "converted_amount": "203627.16",
+            "fx_fee": "2056.84",
+            "status": "SUCCESS",
+            "fraud_flagged": false,
+            "fraud_reason": null,
+            "total_duration_ms": 5.95,
+            "payment_duration_ms": 0.25,
+            "fraud_duration_ms": 5.69,
+            "fx_duration_ms": 0.01,
+            "notification_duration_ms": 0.0,
+            "error_message": null,
+            "completed_at": "2026-10-30T12:17:19.504198"
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/bottlenecks/25e3dc82-3227-4183-b691-5c3fb56fb968",
+      "request": null,
+      "status": 200,
+      "response": {
+        "test_run_id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+        "test_run_name": "HTTP-Smoke-concurrent",
+        "bottlenecks": [
+          {
+            "title": "Insufficient Data for Statistical Bottleneck Analysis",
+            "severity": "INFO",
+            "supporting_measurements": {
+              "transaction_count": 20
+            },
+            "explanation": "Workloads smaller than 50 transactions do not exhibit steady-state queue or resource characteristics.",
+            "recommendation": "Execute a workload of at least 500 to 1,000 transactions for conclusive bottleneck detection."
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/exports/25e3dc82-3227-4183-b691-5c3fb56fb968",
+      "request": null,
+      "status": 200,
+      "response": {
+        "content_type": "text/csv; charset=utf-8",
+        "bytes": 4447
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/test-runs",
+      "request": null,
+      "status": 200,
+      "response": [
+        {
+          "id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+          "name": "HTTP-Smoke-concurrent",
+          "status": "COMPLETED",
+          "transaction_count": 20,
+          "workload_type": "mixed",
+          "processing_mode": "concurrent",
+          "concurrency_limit": 10,
+          "intl_percentage": 50.0,
+          "random_seed": 77,
+          "created_at": "2026-10-30T12:17:19.483081",
+          "started_at": "2026-10-30T12:17:19.489830",
+          "completed_at": "2026-10-30T12:17:19.539028",
+          "progress": 100.0,
+          "processed_count": 20,
+          "metrics": {
+            "total_transactions": 20,
+            "total_payment_time_s": 0.014,
+            "full_pipeline_time_s": 0.0364,
+            "throughput_tps": 1427.59,
+            "pipeline_throughput_tps": 549.26,
+            "avg_response_time_ms": 3.79,
+            "p50_response_time_ms": 4.08,
+            "p95_response_time_ms": 5.95,
+            "p99_response_time_ms": 6.02,
+            "success_count": 15,
+            "success_rate_pct": 75.0,
+            "fraud_flagged_count": 5,
+            "fraud_rate_pct": 25.0,
+            "failed_count": 0,
+            "failure_rate_pct": 0.0,
+            "domestic_count": 12,
+            "international_count": 8,
+            "fx_conversions": {
+              "total_intl": 8,
+              "success_count": 8,
+              "failure_count": 0,
+              "avg_fx_latency_ms": 0.34,
+              "p95_fx_latency_ms": 1.73
+            },
+            "service_latencies": {
+              "payment_avg_ms": 0.44,
+              "payment_p95_ms": 0.51,
+              "fraud_avg_ms": 3.21,
+              "fraud_p95_ms": 5.68,
+              "fx_avg_ms": 0.34,
+              "fx_p95_ms": 1.73,
+              "notification_avg_wait_ms": 5.9,
+              "notification_p95_wait_ms": 12.08,
+              "notification_avg_processing_ms": 6.31
+            },
+            "notification_metrics": {
+              "queued_count": 20,
+              "processed_count": 20,
+              "success_count": 20,
+              "failed_count": 0,
+              "max_queue_size": 15,
+              "current_queue_size": 0,
+              "avg_wait_time_ms": 5.9,
+              "p95_wait_time_ms": 12.08,
+              "avg_processing_time_ms": 6.31,
+              "drain_time_ms": 22.4,
+              "num_workers": 4
+            },
+            "resource_usage": {
+              "cpu_percent": 20.4,
+              "memory_mb": 92.35
+            }
+          },
+          "bottlenecks": [
+            {
+              "title": "Insufficient Data for Statistical Bottleneck Analysis",
+              "severity": "INFO",
+              "supporting_measurements": {
+                "transaction_count": 20
+              },
+              "explanation": "Workloads smaller than 50 transactions do not exhibit steady-state queue or resource characteristics.",
+              "recommendation": "Execute a workload of at least 500 to 1,000 transactions for conclusive bottleneck detection."
+            }
+          ],
+          "error_details": null
+        },
+        {
+          "id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+          "name": "HTTP-Smoke-sequential",
+          "status": "COMPLETED",
+          "transaction_count": 20,
+          "workload_type": "mixed",
+          "processing_mode": "sequential",
+          "concurrency_limit": 10,
+          "intl_percentage": 50.0,
+          "random_seed": 77,
+          "created_at": "2026-10-30T12:17:19.246330",
+          "started_at": "2026-10-30T12:17:19.264285",
+          "completed_at": "2026-10-30T12:17:19.392073",
+          "progress": 100.0,
+          "processed_count": 20,
+          "metrics": {
+            "total_transactions": 20,
+            "total_payment_time_s": 0.1129,
+            "full_pipeline_time_s": 0.1134,
+            "throughput_tps": 177.13,
+            "pipeline_throughput_tps": 176.38,
+            "avg_response_time_ms": 0.55,
+            "p50_response_time_ms": 0.18,
+            "p95_response_time_ms": 2.72,
+            "p99_response_time_ms": 3.19,
+            "success_count": 15,
+            "success_rate_pct": 75.0,
+            "fraud_flagged_count": 5,
+            "fraud_rate_pct": 25.0,
+            "failed_count": 0,
+            "failure_rate_pct": 0.0,
+            "domestic_count": 12,
+            "international_count": 8,
+            "fx_conversions": {
+              "total_intl": 8,
+              "success_count": 8,
+              "failure_count": 0,
+              "avg_fx_latency_ms": 0.39,
+              "p95_fx_latency_ms": 1.99
+            },
+            "service_latencies": {
+              "payment_avg_ms": 0.2,
+              "payment_p95_ms": 0.51,
+              "fraud_avg_ms": 0.17,
+              "fraud_p95_ms": 0.27,
+              "fx_avg_ms": 0.39,
+              "fx_p95_ms": 1.99,
+              "notification_avg_wait_ms": 4.6,
+              "notification_p95_wait_ms": 14.4,
+              "notification_avg_processing_ms": 4.83
+            },
+            "notification_metrics": {
+              "queued_count": 20,
+              "processed_count": 20,
+              "success_count": 20,
+              "failed_count": 0,
+              "max_queue_size": 1,
+              "current_queue_size": 0,
+              "avg_wait_time_ms": 4.6,
+              "p95_wait_time_ms": 14.4,
+              "avg_processing_time_ms": 4.83,
+              "drain_time_ms": 0.47,
+              "num_workers": 4
+            },
+            "resource_usage": {
+              "cpu_percent": 29.2,
+              "memory_mb": 91.61
+            }
+          },
+          "bottlenecks": [
+            {
+              "title": "Insufficient Data for Statistical Bottleneck Analysis",
+              "severity": "INFO",
+              "supporting_measurements": {
+                "transaction_count": 20
+              },
+              "explanation": "Workloads smaller than 50 transactions do not exhibit steady-state queue or resource characteristics.",
+              "recommendation": "Execute a workload of at least 500 to 1,000 transactions for conclusive bottleneck detection."
+            }
+          ],
+          "error_details": null
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard/summary",
+      "request": null,
+      "status": 200,
+      "response": {
+        "total_transactions_processed": 40,
+        "total_experiments_count": 2,
+        "completed_experiments_count": 2,
+        "latest_throughput_tps": 1427.59,
+        "latest_avg_response_ms": 3.79,
+        "latest_p95_response_ms": 5.95,
+        "latest_success_rate_pct": 75.0,
+        "active_run": null,
+        "latest_bottlenecks": [
+          {
+            "title": "Insufficient Data for Statistical Bottleneck Analysis",
+            "severity": "INFO",
+            "supporting_measurements": {
+              "transaction_count": 20
+            },
+            "explanation": "Workloads smaller than 50 transactions do not exhibit steady-state queue or resource characteristics.",
+            "recommendation": "Execute a workload of at least 500 to 1,000 transactions for conclusive bottleneck detection."
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/fx/analytics",
+      "request": null,
+      "status": 200,
+      "response": {
+        "domestic_transactions_count": 24,
+        "international_transactions_count": 16,
+        "fx_conversion_success_count": 16,
+        "fx_conversion_failure_count": 0,
+        "fx_success_rate_pct": 100.0,
+        "avg_fx_latency_ms": 0.36,
+        "p95_fx_latency_ms": 3.05,
+        "currency_pair_distribution": {
+          "USD \u2192 INR": 4,
+          "INR \u2192 AED": 4,
+          "SGD \u2192 INR": 6,
+          "GBP \u2192 INR": 2
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/analytics",
+      "request": null,
+      "status": 200,
+      "response": [
+        {
+          "id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+          "name": "HTTP-Smoke-sequential",
+          "transaction_count": 20,
+          "mode": "sequential",
+          "concurrency": 10,
+          "throughput_tps": 177.13,
+          "avg_latency_ms": 0.55,
+          "p95_latency_ms": 2.72,
+          "p99_latency_ms": 3.19,
+          "success_rate_pct": 75.0,
+          "payment_lat_ms": 0.2,
+          "fraud_lat_ms": 0.17,
+          "fx_lat_ms": 0.39,
+          "notification_wait_ms": 4.6,
+          "max_queue_size": 1
+        },
+        {
+          "id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+          "name": "HTTP-Smoke-concurrent",
+          "transaction_count": 20,
+          "mode": "concurrent",
+          "concurrency": 10,
+          "throughput_tps": 1427.59,
+          "avg_latency_ms": 3.79,
+          "p95_latency_ms": 5.95,
+          "p99_latency_ms": 6.02,
+          "success_rate_pct": 75.0,
+          "payment_lat_ms": 0.44,
+          "fraud_lat_ms": 3.21,
+          "fx_lat_ms": 0.34,
+          "notification_wait_ms": 5.9,
+          "max_queue_size": 15
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/comparisons",
+      "request": {
+        "test_run_ids": [
+          "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+          "25e3dc82-3227-4183-b691-5c3fb56fb968"
+        ]
+      },
+      "status": 200,
+      "response": {
+        "baseline_run_id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+        "comparison": [
+          {
+            "id": "25e3dc82-3227-4183-b691-5c3fb56fb968",
+            "name": "HTTP-Smoke-concurrent",
+            "transaction_count": 20,
+            "processing_mode": "concurrent",
+            "concurrency_limit": 10,
+            "workload_type": "mixed",
+            "throughput_tps": 1427.59,
+            "avg_latency_ms": 3.79,
+            "p95_latency_ms": 5.95,
+            "success_rate_pct": 75.0,
+            "max_queue_size": 15,
+            "fx_avg_ms": 0.34,
+            "notification_avg_wait_ms": 5.9,
+            "throughput_improvement_pct": 0.0,
+            "latency_reduction_pct": 0.0
+          },
+          {
+            "id": "62fcc31c-2859-4ebc-bff1-66a7622886a7",
+            "name": "HTTP-Smoke-sequential",
+            "transaction_count": 20,
+            "processing_mode": "sequential",
+            "concurrency_limit": 10,
+            "workload_type": "mixed",
+            "throughput_tps": 177.13,
+            "avg_latency_ms": 0.55,
+            "p95_latency_ms": 2.72,
+            "success_rate_pct": 75.0,
+            "max_queue_size": 1,
+            "fx_avg_ms": 0.39,
+            "notification_avg_wait_ms": 4.6,
+            "throughput_improvement_pct": -87.59,
+            "latency_reduction_pct": 85.49
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/exports/all/excel",
+      "request": null,
+      "status": 200,
+      "response": {
+        "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "bytes": 6250
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/test-runs/missing",
+      "request": null,
+      "status": 404,
+      "response": {
+        "detail": "Test run not found"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/test-runs",
+      "request": {
+        "transaction_count": 1
+      },
+      "status": 422,
+      "response": {
+        "detail": [
+          {
+            "type": "greater_than_equal",
+            "loc": [
+              "body",
+              "transaction_count"
+            ],
+            "msg": "Input should be greater than or equal to 10",
+            "input": 1,
+            "ctx": {
+              "ge": 10
+            }
+          }
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/comparisons",
+      "request": {
+        "test_run_ids": []
+      },
+      "status": 400,
+      "response": {
+        "detail": "At least 2 test runs are required for comparison"
+      }
+    }
+  ],
+  "cors_allow_and_deny": "passed"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "fintech-documentation-screenshots",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "node run.mjs",
+    "install-browser": "playwright install chromium"
+  },
+  "devDependencies": {
+    "playwright": "^1.64.1",
+    "swagger-ui-dist": "^5.34.0"
+  }
+}

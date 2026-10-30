@@ -14,15 +14,17 @@ export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('overview');
   const [contextRunId, setContextRunId] = useState<string | undefined>(undefined);
   const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [backendUnavailable, setBackendUnavailable] = useState(false);
 
   // Poll dashboard summary periodically to reflect active experiment state in navbar
   useEffect(() => {
     const checkActive = async () => {
       try {
         const summary = await api.getDashboardSummary();
+        setBackendUnavailable(false);
         setIsRunning(!!summary.active_run);
       } catch (err) {
-        // server might be starting
+        setBackendUnavailable(true);
       }
     };
     checkActive();
@@ -49,6 +51,11 @@ export const App: React.FC = () => {
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {backendUnavailable && (
+          <div role="alert" className="mb-6 rounded-xl border border-amber-700 bg-amber-950 p-4 text-sm text-amber-100">
+            Unable to connect to the backend. Displayed data may be unavailable or out of date. Retrying automatically; a sleeping demo server may need time to start.
+          </div>
+        )}
         {activeTab === 'overview' && (
           <OverviewPage onNavigate={handleNavigate} />
         )}

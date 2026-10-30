@@ -90,8 +90,7 @@ class NotificationService:
         """
         drain_start = time.perf_counter()
         # Allow existing queue items to drain
-        if not self.queue.empty():
-            await self.queue.join()
+        await self.queue.join()
         
         self.is_running = False
         for w in self.workers:

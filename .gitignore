@@ -24,3 +24,9 @@ frontend/dist/
 .idea/
 .DS_Store
 Thumbs.db
+
+# New runtime databases (the historical tracked database remains preserved)
+*.db
+*.db-journal
+*.db-wal
+*.db-shm

@@ -1,0 +1,45 @@
+INFO:     Started server process [29164]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:52246 (Press CTRL+C to quit)
+INFO:     127.0.0.1:52247 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "PUT /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/fx/rates HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "PUT /api/fx/rates HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "POST /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/test-runs/62fcc31c-2859-4ebc-bff1-66a7622886a7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/test-runs/62fcc31c-2859-4ebc-bff1-66a7622886a7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/test-runs/62fcc31c-2859-4ebc-bff1-66a7622886a7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/test-runs/62fcc31c-2859-4ebc-bff1-66a7622886a7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/test-runs/62fcc31c-2859-4ebc-bff1-66a7622886a7/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/test-runs/62fcc31c-2859-4ebc-bff1-66a7622886a7/transactions?page=1&page_size=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/bottlenecks/62fcc31c-2859-4ebc-bff1-66a7622886a7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/exports/62fcc31c-2859-4ebc-bff1-66a7622886a7 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "POST /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/test-runs/25e3dc82-3227-4183-b691-5c3fb56fb968 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/test-runs/25e3dc82-3227-4183-b691-5c3fb56fb968 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/test-runs/25e3dc82-3227-4183-b691-5c3fb56fb968 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/test-runs/25e3dc82-3227-4183-b691-5c3fb56fb968/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/test-runs/25e3dc82-3227-4183-b691-5c3fb56fb968/transactions?page=1&page_size=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/bottlenecks/25e3dc82-3227-4183-b691-5c3fb56fb968 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/exports/25e3dc82-3227-4183-b691-5c3fb56fb968 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/dashboard/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/fx/analytics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/analytics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "POST /api/comparisons HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/exports/all/excel HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "GET /api/test-runs/missing HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:52247 - "POST /api/test-runs HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:52247 - "POST /api/comparisons HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:52247 - "OPTIONS /api/test-runs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52247 - "OPTIONS /api/test-runs HTTP/1.1" 400 Bad Request
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [29164]

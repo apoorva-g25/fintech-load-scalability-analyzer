@@ -1,0 +1,123 @@
+{
+  "timestamp": "2026-10-30T12:46:31.612Z",
+  "timezone": "Asia/Kolkata",
+  "viewport": {
+    "width": 1600,
+    "height": 1000
+  },
+  "deviceScaleFactor": 1,
+  "fullPage": true,
+  "browser": "156.0.8078.4",
+  "frontend": "http://127.0.0.1:58239",
+  "backend": "http://127.0.0.1:58238",
+  "dataSource": "New isolated SQLite database; two bounded UI submissions; no historical data imported",
+  "entries": [
+    {
+      "filename": "00-overview-before-demo.png",
+      "page": "Overview before demonstrations",
+      "tab": "overview",
+      "url": "http://127.0.0.1:58239/",
+      "status": "NOT CAPTURED",
+      "note": "Workflow did not reach this step"
+    },
+    {
+      "filename": "01-overview-dashboard.png",
+      "page": "Overview after demonstrations",
+      "tab": "overview",
+      "url": "http://127.0.0.1:58239/",
+      "status": "NOT CAPTURED",
+      "note": "Workflow did not reach this step"
+    },
+    {
+      "filename": "02-run-load-test.png",
+      "page": "Configured 100-transaction demonstration form",
+      "tab": "load-test",
+      "url": "http://127.0.0.1:58239/",
+      "status": "NOT CAPTURED",
+      "note": "Workflow did not reach this step"
+    },
+    {
+      "filename": "03-load-test-results.png",
+      "page": "Completed concurrent demonstration",
+      "tab": "load-test",
+      "url": "http://127.0.0.1:58239/",
+      "status": "NOT CAPTURED",
+      "note": "Workflow did not reach this step"
+    },
+    {
+      "filename": "03a-sequential-results.png",
+      "page": "Completed sequential demonstration",
+      "tab": "load-test",
+      "url": "http://127.0.0.1:58239/",
+      "status": "NOT CAPTURED",
+      "note": "Workflow did not reach this step"
+    },
+    {
+      "filename": "04-performance-analytics.png",
+      "page": "Performance Analytics: aggregate",
+      "tab": "analytics",
+      "url": "http://127.0.0.1:58239/",
+      "status": "NOT CAPTURED",
+      "note": "Workflow did not reach this step"
+    },
+    {
+      "filename": "04a-performance-run-details.png",
+      "page": "Performance Analytics: concurrent run",
+      "tab": "analytics",
+      "url": "http://127.0.0.1:58239/",
+      "status": "NOT CAPTURED",
+      "note": "Workflow did not reach this step"
+    },
+    {
+      "filename": "05-bottleneck-analysis.png",
+      "page": "Bottleneck Analysis",
+      "tab": "bottlenecks",
+      "url": "http://127.0.0.1:58239/",
+      "status": "NOT CAPTURED",
+      "note": "Workflow did not reach this step"
+    },
+    {
+      "filename": "06-experiment-comparison.png",
+      "page": "Experiment Comparison",
+      "tab": "comparison",
+      "url": "http://127.0.0.1:58239/",
+      "status": "NOT CAPTURED",
+      "note": "Workflow did not reach this step"
+    },
+    {
+      "filename": "07-fx-analytics.png",
+      "page": "FX Analytics",
+      "tab": "fx",
+      "url": "http://127.0.0.1:58239/",
+      "status": "NOT CAPTURED",
+      "note": "Workflow did not reach this step"
+    },
+    {
+      "filename": "08-transaction-explorer.png",
+      "page": "Transaction Explorer",
+      "tab": "explorer",
+      "url": "http://127.0.0.1:58239/",
+      "status": "NOT CAPTURED",
+      "note": "Workflow did not reach this step"
+    },
+    {
+      "filename": "09-system-configuration.png",
+      "page": "System Configuration (read only)",
+      "tab": "config",
+      "url": "http://127.0.0.1:58239/",
+      "status": "NOT CAPTURED",
+      "note": "Workflow did not reach this step"
+    },
+    {
+      "filename": "10-api-documentation.png",
+      "page": "Actual backend Swagger UI",
+      "tab": "backend /docs",
+      "url": "http://127.0.0.1:58238/docs",
+      "status": "NOT CAPTURED",
+      "note": "Workflow did not reach this step"
+    }
+  ],
+  "runs": [],
+  "issues": [],
+  "fatal": "response.request is not a function"
+}
